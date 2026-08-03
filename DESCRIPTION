@@ -30,7 +30,8 @@ Suggests:
     rlog,
     rmarkdown,
     rsyslog,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    webfakes
 VignetteBuilder: 
     knitr
 Config/Needs/website: tidyverse/tidytemplate
