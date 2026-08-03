@@ -28,7 +28,6 @@ Suggests:
     lgr,
     logger,
     logging,
-    loggit,
     microbenchmark,
     rlog,
     rmarkdown,
