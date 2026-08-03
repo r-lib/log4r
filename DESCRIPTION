@@ -36,7 +36,6 @@ Suggests:
 Encoding: UTF-8
 LazyLoad: yes
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
 VignetteBuilder: knitr
 Config/testthat/edition: 3
 Collate:
@@ -48,3 +47,4 @@ Collate:
     'log4r-package.R'
     'logger.R'
 Config/Needs/website: tidyverse/tidytemplate
+Config/roxygen2/version: 8.0.0
