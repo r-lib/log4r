@@ -5,14 +5,12 @@ Version: 0.4.4.9000
 Authors@R: c(
     person("John Myles", "White", role = c("aut", "cph")),
     person("Kenton", "White", role = "ctb"),
-    person("Kirill", "Müller", email = "krlmlr+r@mailbox.org",
-           role = "ctb"),
-    person("Aaron", "Jacobs", email = "atheriel@gmail.com",
-           role = c("aut", "cre"))
-    )
+    person("Kirill", "Müller", , "krlmlr+r@mailbox.org", role = "ctb"),
+    person("Aaron", "Jacobs", , "atheriel@gmail.com", role = c("aut", "cre"))
+  )
 Description: The log4r package is meant to provide a fast, lightweight,
-  object-oriented approach to logging in R based on the widely-emulated
-  'log4j' system and etymology.
+    object-oriented approach to logging in R based on the widely-emulated
+    'log4j' system and etymology.
 License: Artistic-2.0
 URL: https://github.com/johnmyleswhite/log4r, https://log4r.r-lib.org
 BugReports: https://github.com/johnmyleswhite/log4r/issues
@@ -33,11 +31,14 @@ Suggests:
     rmarkdown,
     rsyslog,
     testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
+Config/Needs/website: tidyverse/tidytemplate
+Config/roxygen2/version: 8.0.0
+Config/testthat/edition: 3
 Encoding: UTF-8
 LazyLoad: yes
 Roxygen: list(markdown = TRUE)
-VignetteBuilder: knitr
-Config/testthat/edition: 3
 Collate:
     'appenders.R'
     'logfuncs.R'
@@ -46,5 +47,3 @@ Collate:
     'level.R'
     'log4r-package.R'
     'logger.R'
-Config/Needs/website: tidyverse/tidytemplate
-Config/roxygen2/version: 8.0.0
