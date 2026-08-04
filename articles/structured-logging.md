@@ -1,0 +1,96 @@
+# Structured Logging
+
+Traditionally, messages emitted from R packages or scripts are
+unstructured messages, like this one from the **shiny** package:
+
+``` text
+Listening on http://localhost:8080
+```
+
+A richer, more structured representation of this log message might be:
+
+``` text
+level=INFO ts=2021-10-21T20:21:01Z message="starting Shiny" host=localhost port=8080 shiny_version=1.6.0 appdir=projects/mycoolapp
+```
+
+This second message uses *structured logging*, attaching relevant
+metadata to a log message as standalone fields.
+
+Structured logs have two advantages:
+
+- They tend to have more standard, predictable content, which can make
+  reading them easier (especially if you did not write the message
+  yourself); and
+
+- They are much, much easier for log management and aggregation systems
+  to query – fields can be used to aggregate logs into metrics like “how
+  many times has X happened” and “how long does task Y take on average”,
+  and individual fields can be used to answer questions like “what
+  happened to user Z over their last few logins”.
+
+**log4r** includes support for two of the most popular structured
+logging formats:
+
+- `json_log_layout`: Emit log messages as JSON, likely the most
+  widely-used.
+
+- `logfmt_log_layout`: Emit log messages using the more human-friendly
+  [logfmt](https://brandur.org/logfmt).
+
+To use these formats, you can pass additional arguments to the existing
+logging functions
+[`log_info()`](https://log4r.r-lib.org/reference/log_at.md),
+[`log_warn()`](https://log4r.r-lib.org/reference/log_at.md) and
+[`log_error()`](https://log4r.r-lib.org/reference/log_at.md).
+
+## JSON Logs
+
+The most popular format for structured logging is probably JSON, which
+you can configure as follows:
+
+``` r
+
+logger <- logger(appenders = console_appender(json_log_layout()))
+```
+
+As an example, suppose you are logging unauthorised requests to a
+[Plumber](https://www.rplumber.io/) API. You might have a log message
+with fields like the following:
+
+``` r
+
+# Here "req" and "res" are slightly fake request & response objects.
+log_info(
+  logger, message = "authentication failed",
+  method = req$REQUEST_METHOD,
+  path = req$PATH_INFO,
+  params = sub("^\\?", "", req$QUERY_STRING),
+  user_agent = req$HTTP_USER_AGENT,
+  remote_addr = req$REMOTE_ADDR,
+  status = res$status
+)
+#> {"message":"authentication failed","method":"POST","path":"/upload","params":"","user_agent":"curl/7.58.0","remote_addr":"124.133.52.161","status":401,"level":"INFO","time":"2026-08-04T19:29:44.170384Z"}
+```
+
+## logfmt Logs
+
+An alternative to JSON is the popular, more human-friendly logfmt style,
+which you can configure as follows:
+
+``` r
+
+logger <- logger(appenders = console_appender(logfmt_log_layout()))
+```
+
+As an example, you might have the following in a script that processes
+many CSV files:
+
+``` r
+
+log_info(
+  logger, message = "processed entries", file = filename,
+  entries = nrow(entries),
+  elapsed = unclass(difftime(Sys.time(), start, units = "secs"))
+)
+#> level=INFO ts=2026-08-04T19:29:44.315126Z message="processed entries" file=catpics_01.csv entries=4124 elapsed=0.3402
+```

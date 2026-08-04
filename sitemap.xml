@@ -1,0 +1,23 @@
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://log4r.r-lib.org/404.html</loc></url>
+<url><loc>https://log4r.r-lib.org/AGENTS.html</loc></url>
+<url><loc>https://log4r.r-lib.org/articles/index.html</loc></url>
+<url><loc>https://log4r.r-lib.org/articles/logging-beyond-local-files.html</loc></url>
+<url><loc>https://log4r.r-lib.org/articles/performance.html</loc></url>
+<url><loc>https://log4r.r-lib.org/articles/structured-logging.html</loc></url>
+<url><loc>https://log4r.r-lib.org/authors.html</loc></url>
+<url><loc>https://log4r.r-lib.org/index.html</loc></url>
+<url><loc>https://log4r.r-lib.org/news/index.html</loc></url>
+<url><loc>https://log4r.r-lib.org/reference/appenders.html</loc></url>
+<url><loc>https://log4r.r-lib.org/reference/http_appender.html</loc></url>
+<url><loc>https://log4r.r-lib.org/reference/index.html</loc></url>
+<url><loc>https://log4r.r-lib.org/reference/layouts.html</loc></url>
+<url><loc>https://log4r.r-lib.org/reference/level.html</loc></url>
+<url><loc>https://log4r.r-lib.org/reference/log4r-deprecated.html</loc></url>
+<url><loc>https://log4r.r-lib.org/reference/log4r-package.html</loc></url>
+<url><loc>https://log4r.r-lib.org/reference/log_at.html</loc></url>
+<url><loc>https://log4r.r-lib.org/reference/logger.html</loc></url>
+<url><loc>https://log4r.r-lib.org/reference/syslog_appender.html</loc></url>
+<url><loc>https://log4r.r-lib.org/reference/tcp_appender.html</loc></url>
+</urlset>
+
