@@ -16,7 +16,8 @@ test_that("The HTTP appender works correctly", {
   httpbin <- webfakes::local_app_process(webfakes::httpbin_app())
 
   appender <- http_appender(
-    httpbin$url("/post"), layout = simple_log_layout()
+    httpbin$url("/post"),
+    layout = simple_log_layout()
   )
   expect_silent(appender("INFO", "Message"))
 
@@ -36,7 +37,8 @@ test_that("The HTTP appender errors on HTTP error statuses", {
   httpbin <- webfakes::local_app_process(webfakes::httpbin_app())
 
   appender <- http_appender(
-    httpbin$url("/status/503"), layout = simple_log_layout()
+    httpbin$url("/status/503"),
+    layout = simple_log_layout()
   )
   expect_snapshot(appender("INFO", "Message"), error = TRUE)
 })
@@ -81,7 +83,10 @@ test_that("Messages from the syslog appender end up in the system log", {
   }
 
   journal <- system2(
-    "journalctl", c("-rq", "-t", "myapp"), stdout = TRUE, stderr = FALSE
+    "journalctl",
+    c("-rq", "-t", "myapp"),
+    stdout = TRUE,
+    stderr = FALSE
   )
 
   if (!is.null(attr(journal, "status"))) {

@@ -68,14 +68,22 @@ file_appender <- function(file, append = TRUE, layout = default_log_layout()) {
 #'   used by [tcp_appender()].
 #'
 #' @export
-tcp_appender <- function(host, port, layout = default_log_layout(),
-                         timeout = getOption("timeout")) {
+tcp_appender <- function(
+  host,
+  port,
+  layout = default_log_layout(),
+  timeout = getOption("timeout")
+) {
   check_layout(layout)
   layout <- compiler::cmpfun(layout)
   # Use a finalizer pattern to make sure we close the connection.
   env <- new.env(size = 1)
   env$con <- socketConnection(
-    host = host, port = port, open = "wb", blocking = TRUE, timeout = timeout
+    host = host,
+    port = port,
+    open = "wb",
+    blocking = TRUE,
+    timeout = timeout
   )
   reg.finalizer(env, function(e) close(e$con), onexit = TRUE)
   function(level, ...) {
@@ -115,17 +123,24 @@ tcp_appender <- function(host, port, layout = default_log_layout(),
 #' @seealso [appenders] for more information on Appenders.
 #'
 #' @export
-http_appender <- function(url, method = "POST", layout = default_log_layout(),
-                          ...) {
+http_appender <- function(
+  url,
+  method = "POST",
+  layout = default_log_layout(),
+  ...
+) {
   rlang::check_installed("httr", "to use this HTTP appender.")
   check_layout(layout)
   layout <- compiler::cmpfun(layout)
 
-  tryCatch({
-    verb <- get(method, envir = asNamespace("httr"))
-  }, error = function(e) {
-    cli::cli_abort("{.str {method}} is not a supported HTTP method.")
-  })
+  tryCatch(
+    {
+      verb <- get(method, envir = asNamespace("httr"))
+    },
+    error = function(e) {
+      cli::cli_abort("{.str {method}} is not a supported HTTP method.")
+    }
+  )
   args <- c(list(url = url), list(...))
   function(level, ...) {
     args$body <- layout(level, ...)
@@ -168,15 +183,23 @@ syslog_appender <- function(identifier, layout = bare_log_layout(), ...) {
     # Translate between log4j and syslog priority levels. Using a switch
     # statement turns out to be faster than a lookup.
     syslog_level <- switch(
-      level, "TRACE" = "DEBUG", "DEBUG" = "DEBUG", "INFO" = "INFO",
-      "WARN" = "WARNING", "ERROR" = "ERR", "FATAL" = "CRITICAL"
+      level,
+      "TRACE" = "DEBUG",
+      "DEBUG" = "DEBUG",
+      "INFO" = "INFO",
+      "WARN" = "WARNING",
+      "ERROR" = "ERR",
+      "FATAL" = "CRITICAL"
     )
     rsyslog::syslog(msg, level = syslog_level)
   }
 }
 
-check_layout <- function(x, arg = rlang::caller_arg(x),
-                         call = rlang::caller_env()) {
+check_layout <- function(
+  x,
+  arg = rlang::caller_arg(x),
+  call = rlang::caller_env()
+) {
   if (is.function(x)) {
     return(invisible(NULL))
   }

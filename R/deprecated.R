@@ -31,12 +31,15 @@ NULL
 #' @export
 #' @keywords internal
 #' @rdname log4r-deprecated
-create.logger <- function(logfile = "logfile.log", level = "FATAL",
-                          logformat = NULL)
-{
+create.logger <- function(
+  logfile = "logfile.log",
+  level = "FATAL",
+  logformat = NULL
+) {
   lifecycle::deprecate_warn("0.5.0", "create.logger()", "logger()")
   out <- logger(
-    threshold = level, appenders = file_appender(file = logfile)
+    threshold = level,
+    appenders = file_appender(file = logfile)
   )
   out$logfile <- logfile
   out

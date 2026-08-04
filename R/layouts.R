@@ -128,13 +128,19 @@ fmt_current_time <- function(format, use_utc = FALSE) {
   })
 }
 
-check_time_format <- function(x, arg = rlang::caller_arg(x),
-                              call = rlang::caller_env()) {
+check_time_format <- function(
+  x,
+  arg = rlang::caller_arg(x),
+  call = rlang::caller_env()
+) {
   if (is.character(x)) {
-    tryCatch({
-      fmt_current_time(x)()
-      return(invisible(NULL))
-    }, error = function(e) {})
+    tryCatch(
+      {
+        fmt_current_time(x)()
+        return(invisible(NULL))
+      },
+      error = function(e) {}
+    )
   }
   cli::cli_abort(
     c(

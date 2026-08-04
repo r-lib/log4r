@@ -16,3 +16,5 @@
 ^AGENTS\.md$
 ^\.claude$
 ^cran-comments\.md$
+^[.]?air[.]toml$
+^\.vscode$

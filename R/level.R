@@ -71,4 +71,6 @@ FATAL <- as_level("FATAL")
 
 #' @rdname level
 #' @export
-available.loglevels <- function() lapply(stats::setNames(nm = LEVEL_NAMES), as_level)
+available.loglevels <- function() {
+  lapply(stats::setNames(nm = LEVEL_NAMES), as_level)
+}

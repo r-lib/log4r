@@ -17,7 +17,9 @@
 #' @export
 log_at <- function(logger, level, ...) {
   level <- as_level(level)
-  if (logger$threshold > level) return(invisible(NULL))
+  if (logger$threshold > level) {
+    return(invisible(NULL))
+  }
   for (appender in logger$appenders) {
     appender(LEVEL_NAMES[level], ...)
   }
@@ -26,7 +28,9 @@ log_at <- function(logger, level, ...) {
 #' @rdname log_at
 #' @export
 log_debug <- function(logger, ...) {
-  if (logger$threshold > DEBUG) return(invisible(NULL))
+  if (logger$threshold > DEBUG) {
+    return(invisible(NULL))
+  }
   for (appender in logger$appenders) {
     appender("DEBUG", ...)
   }
@@ -35,7 +39,9 @@ log_debug <- function(logger, ...) {
 #' @rdname log_at
 #' @export
 log_info <- function(logger, ...) {
-  if (logger$threshold > INFO) return(invisible(NULL))
+  if (logger$threshold > INFO) {
+    return(invisible(NULL))
+  }
   for (appender in logger$appenders) {
     appender("INFO", ...)
   }
@@ -44,7 +50,9 @@ log_info <- function(logger, ...) {
 #' @rdname log_at
 #' @export
 log_warn <- function(logger, ...) {
-  if (logger$threshold > WARN) return(invisible(NULL))
+  if (logger$threshold > WARN) {
+    return(invisible(NULL))
+  }
   for (appender in logger$appenders) {
     appender("WARN", ...)
   }
@@ -53,7 +61,9 @@ log_warn <- function(logger, ...) {
 #' @rdname log_at
 #' @export
 log_error <- function(logger, ...) {
-  if (logger$threshold > ERROR) return(invisible(NULL))
+  if (logger$threshold > ERROR) {
+    return(invisible(NULL))
+  }
   for (appender in logger$appenders) {
     appender("ERROR", ...)
   }

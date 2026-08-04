@@ -25,7 +25,7 @@ test_that("logfmt layouts work correctly", {
   layout <- logfmt_log_layout()
   expect_match(layout("INFO", "Message"), 'msg=Message')
   expect_match(
-    layout("INFO", a = "a", b = 1.2, c = 1L, d = TRUE, e = NULL, f = 1+3i),
+    layout("INFO", a = "a", b = 1.2, c = 1L, d = TRUE, e = NULL, f = 1 + 3i),
     'a=a b=1.2 c=1 d=true e=null f=1\\+3i'
   )
   # Test escaping of keys and values.
