@@ -13,8 +13,8 @@
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="A Fast and Lightweight Logging System for R, Based on log4j">
-<meta name="description" content="Provides a fast, lightweight, object-oriented approach to logging based on the widely-emulated log4j system and etymology. Loggers write messages to one or more destinations, called appenders, such as the console, a file, or a remote server, and control their format with a layout. Messages below a configurable severity threshold are discarded cheaply, so logging calls can be left in production code.">
-<meta property="og:description" content="Provides a fast, lightweight, object-oriented approach to logging based on the widely-emulated log4j system and etymology. Loggers write messages to one or more destinations, called appenders, such as the console, a file, or a remote server, and control their format with a layout. Messages below a configurable severity threshold are discarded cheaply, so logging calls can be left in production code.">
+<meta name="description" content="Provides a fast, lightweight, object-oriented approach to logging based on the widely-emulated log4j system and etymology. Loggers write messages to one or more destinations, such as the console, a file, or a remote server, using a format you control. Messages below the chosen severity threshold are discarded cheaply, so logging calls can be left in production code.">
+<meta property="og:description" content="Provides a fast, lightweight, object-oriented approach to logging based on the widely-emulated log4j system and etymology. Loggers write messages to one or more destinations, such as the console, a file, or a remote server, using a format you control. Messages below the chosen severity threshold are discarded cheaply, so logging calls can be left in production code.">
 <meta name="robots" content="noindex">
 <script src="https://cdn.jsdelivr.net/gh/posit-dev/supported-by-posit/js/badge.min.js" data-max-height="43" data-light-bg="#666f76" data-light-fg="#f9f9f9"></script><script defer data-domain="log4r.r-lib.org,all.tidyverse.org" src="https://plausible.io/js/plausible.js"></script>
 </head>
@@ -85,9 +85,9 @@
 <code class="sourceCode R"><span><span class="va">logger</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/logger.html">logger</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/log_at.html">log_info</a></span><span class="op">(</span><span class="va">logger</span>, <span class="st">"Located nearest gas station."</span><span class="op">)</span></span>
-<span><span class="co">#&gt; INFO  [2019-09-04 16:31:04] Located nearest gas station.</span></span>
+<span><span class="co">#&gt; INFO  [2026-08-04 14:31:21] Located nearest gas station.</span></span>
 <span><span class="fu"><a href="reference/log_at.html">log_warn</a></span><span class="op">(</span><span class="va">logger</span>, <span class="st">"Ez-Gas sensor network is not available."</span><span class="op">)</span></span>
-<span><span class="co">#&gt; WARN  [2019-09-04 16:31:04] Ez-Gas sensor network is not available.</span></span>
+<span><span class="co">#&gt; WARN  [2026-08-04 14:31:21] Ez-Gas sensor network is not available.</span></span>
 <span><span class="fu"><a href="reference/log_at.html">log_debug</a></span><span class="op">(</span><span class="va">logger</span>, <span class="st">"Debug messages are suppressed by default."</span><span class="op">)</span></span></code></pre></div>
 <p>Logging destinations are controlled by <strong>Appenders</strong>, a few of which are provided by the package. For instance, if we want to debug-level messages to a file:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -98,8 +98,8 @@
 <span><span class="fu"><a href="reference/log_at.html">log_debug</a></span><span class="op">(</span><span class="va">logger</span>, <span class="st">"Debug messages are now visible."</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">log_file</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "INFO  [2019-09-04 16:31:04] Messages are now written to the file instead."</span></span>
-<span><span class="co">#&gt; [2] "DEBUG [2019-09-04 16:31:04] Debug messages are now visible."</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "INFO  [2026-08-04 14:31:21] Messages are now written to the file instead."</span></span>
+<span><span class="co">#&gt; [2] "DEBUG [2026-08-04 14:31:21] Debug messages are now visible."</span></span></code></pre></div>
 <p>The <code>appenders</code> parameter takes a list, so you can log to multiple destinations transparently.</p>
 <p>For local development or simple batch R scripts run manually, writing log messages to a file for later inspection is convenient. However, for deployed R applications or automated scripts it is more likely you will need to send logs to a central location; see <code><a href="articles/logging-beyond-local-files.html">vignette("logging-beyond-local-files", package = "log4r")</a></code>.</p>
 <p>To control the format of the messages you can change the <strong>Layout</strong> used by each appender. Layouts are functions; you can write your own quite easily:</p>
@@ -110,7 +110,7 @@
 <span></span>
 <span><span class="va">logger</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/logger.html">logger</a></span><span class="op">(</span>appenders <span class="op">=</span> <span class="fu"><a href="reference/appenders.html">console_appender</a></span><span class="op">(</span><span class="va">my_layout</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="fu"><a href="reference/log_at.html">log_info</a></span><span class="op">(</span><span class="va">logger</span>, <span class="st">"Messages should now look a little different."</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 2019-09-04 16:31:04 [INFO] Messages should now look a little different.</span></span></code></pre></div>
+<span><span class="co">#&gt; 2026-08-04 14:31:21 [INFO] Messages should now look a little different.</span></span></code></pre></div>
 <p>With an appropriate layout, you can also use <em>structured logging</em>, enriching log messages with contextual fields:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">logger</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/logger.html">logger</a></span><span class="op">(</span>appenders <span class="op">=</span> <span class="fu"><a href="reference/appenders.html">console_appender</a></span><span class="op">(</span><span class="fu"><a href="reference/layouts.html">logfmt_log_layout</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
@@ -118,7 +118,7 @@
 <span>  <span class="va">logger</span>, message <span class="op">=</span> <span class="st">"processed entries"</span>, file <span class="op">=</span> <span class="st">"catpics_01.csv"</span>,</span>
 <span>  entries <span class="op">=</span> <span class="fl">4124</span>, elapsed <span class="op">=</span> <span class="fl">2.311</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; level=INFO ts=2021-10-22T20:19:21Z message="processed entries" file=catpics_01.csv entries=4124 elapsed=2.311</span></span></code></pre></div>
+<span><span class="co">#&gt; level=INFO ts=2026-08-04T19:31:21.121189Z message="processed entries" file=catpics_01.csv entries=4124 elapsed=2.311</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="older-apis">Older APIs<a class="anchor" aria-label="anchor" href="#older-apis"></a>
@@ -126,8 +126,18 @@
 <p>The 0.2 API is still supported, but will issue deprecation warnings when used:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">logger</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/log4r-deprecated.html">create.logger</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: `create.logger()` was deprecated in log4r 0.5.0.</span></span>
+<span><span class="co">#&gt; ℹ Please use `logger()` instead.</span></span>
+<span><span class="co">#&gt; This warning is displayed once per session.</span></span>
+<span><span class="co">#&gt; Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span>
+<span><span class="co">#&gt; generated.</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/log4r-deprecated.html">logfile</a></span><span class="op">(</span><span class="va">logger</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">log_file</span></span>
+<span><span class="co">#&gt; Warning: `logfile()` was deprecated in log4r 0.5.0.</span></span>
+<span><span class="co">#&gt; ℹ Please use `logger()` instead.</span></span>
+<span><span class="co">#&gt; This warning is displayed once per session.</span></span>
+<span><span class="co">#&gt; Call `lifecycle::last_lifecycle_warnings()` to see where this warning was</span></span>
+<span><span class="co">#&gt; generated.</span></span>
 <span><span class="fu"><a href="reference/level.html">level</a></span><span class="op">(</span><span class="va">logger</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"INFO"</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/log4r-deprecated.html">debug</a></span><span class="op">(</span><span class="va">logger</span>, <span class="st">'A Debugging Message'</span><span class="op">)</span></span>
@@ -137,10 +147,10 @@
 <span><span class="fu"><a href="reference/log4r-deprecated.html">fatal</a></span><span class="op">(</span><span class="va">logger</span>, <span class="st">'A Fatal Error Message'</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">log_file</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "INFO  [2019-09-04 16:31:05] An Info Message"      </span></span>
-<span><span class="co">#&gt; [2] "WARN  [2019-09-04 16:31:05] A Warning Message"    </span></span>
-<span><span class="co">#&gt; [3] "ERROR [2019-09-04 16:31:05] An Error Message"     </span></span>
-<span><span class="co">#&gt; [4] "FATAL [2019-09-04 16:31:05] A Fatal Error Message"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "INFO  [2026-08-04 14:31:21] An Info Message"      </span></span>
+<span><span class="co">#&gt; [2] "WARN  [2026-08-04 14:31:21] A Warning Message"    </span></span>
+<span><span class="co">#&gt; [3] "ERROR [2026-08-04 14:31:21] An Error Message"     </span></span>
+<span><span class="co">#&gt; [4] "FATAL [2026-08-04 14:31:21] A Fatal Error Message"</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>

@@ -69,7 +69,7 @@ log_info(
   remote_addr = req$REMOTE_ADDR,
   status = res$status
 )
-#> {"message":"authentication failed","method":"POST","path":"/upload","params":"","user_agent":"curl/7.58.0","remote_addr":"124.133.52.161","status":401,"level":"INFO","time":"2026-08-04T19:26:15.504782Z"}
+#> {"message":"authentication failed","method":"POST","path":"/upload","params":"","user_agent":"curl/7.58.0","remote_addr":"124.133.52.161","status":401,"level":"INFO","time":"2026-08-04T19:59:41.794030Z"}
 ```
 
 ## logfmt Logs
@@ -92,5 +92,5 @@ log_info(
   entries = nrow(entries),
   elapsed = unclass(difftime(Sys.time(), start, units = "secs"))
 )
-#> level=INFO ts=2026-08-04T19:26:15.635421Z message="processed entries" file=catpics_01.csv entries=4124 elapsed=0.3115
+#> level=INFO ts=2026-08-04T19:59:41.917203Z message="processed entries" file=catpics_01.csv entries=4124 elapsed=0.3231
 ```
