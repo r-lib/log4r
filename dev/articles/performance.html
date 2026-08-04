@@ -7,11 +7,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Logging Performance • log4r</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Source_Sans_Pro-0.4.9/font.css" rel="stylesheet">
-<link href="../deps/Source_Code_Pro-0.4.9/font.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/Source_Sans_Pro-0.4.10/font.css" rel="stylesheet">
+<link href="../deps/Source_Code_Pro-0.4.10/font.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Logging Performance">
 <meta name="robots" content="noindex">
 <script defer data-domain="log4r.r-lib.org,all.tidyverse.org" src="https://plausible.io/js/plausible.js"></script>
@@ -64,7 +64,7 @@
 
       <h1>Logging Performance</h1>
             
-            <h4 data-toc-skip class="date">Updated as of 2024-10-18</h4>
+            <h4 data-toc-skip class="date">Updated as of 2026-08-04</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/johnmyleswhite/log4r/blob/main/vignettes/performance.Rmd" class="external-link"><code>vignettes/performance.Rmd</code></a></small>
       <div class="d-none name"><code>performance.Rmd</code></div>
@@ -82,7 +82,6 @@ which are well-established packages; and</li>
 <li>
 <a href="https://cran.r-project.org/package=logger" class="external-link"><strong>logger</strong></a>,
 <a href="https://cran.r-project.org/package=lgr" class="external-link"><strong>lgr</strong></a>,
-<a href="https://cran.r-project.org/package=loggit" class="external-link"><strong>loggit</strong></a>,
 and <a href="https://cran.r-project.org/package=rlog" class="external-link"><strong>rlog</strong></a>,
 all of which are relative newcomers.</li>
 </ul>
@@ -216,34 +215,12 @@ setup:</p>
 <span><span class="op">}</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="the-loggit-package">The <strong>loggit</strong> Package<a class="anchor" aria-label="anchor" href="#the-loggit-package"></a>
-</h2>
-<p>The following is what I believe to be a typical
-<strong>loggit</strong> setup. Since we only want to log to the console,
-set the output file to <code>/dev/null</code>. In addition,
-<strong>loggit</strong> does not have a notion of thresholds, so there
-is no “do nothing” operation to test.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"loggit"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Loading required namespace: loggit</span></span>
-<span></span>
-<span><span class="kw">if</span> <span class="op">(</span><span class="va">.Platform</span><span class="op">$</span><span class="va">OS.type</span> <span class="op">==</span> <span class="st">"unix"</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu">loggit</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/loggit/man/set_logfile.html" class="external-link">set_logfile</a></span><span class="op">(</span><span class="st">"/dev/null"</span><span class="op">)</span></span>
-<span><span class="op">}</span> <span class="kw">else</span> <span class="op">{</span></span>
-<span>  <span class="fu">loggit</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/loggit/man/set_logfile.html" class="external-link">set_logfile</a></span><span class="op">(</span><span class="st">"nul"</span><span class="op">)</span></span>
-<span><span class="op">}</span></span>
-<span></span>
-<span><span class="va">loggit_info</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="fu">loggit</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/loggit/man/loggit.html" class="external-link">loggit</a></span><span class="op">(</span><span class="st">"INFO"</span>, <span class="st">"Info message."</span><span class="op">)</span></span>
-<span><span class="op">}</span></span></code></pre></div>
-</div>
-<div class="section level2">
 <h2 id="the-rlog-package">The <strong>rlog</strong> Package<a class="anchor" aria-label="anchor" href="#the-rlog-package"></a>
 </h2>
 <p>The <strong>rlog</strong> package currently has no configuration
 options other than the threshold, which is controlled via an environment
 variable and defaults to hiding debug-level messages:</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"rlog"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required namespace: rlog</span></span>
 <span></span>
@@ -259,7 +236,7 @@ variable and defaults to hiding debug-level messages:</p>
 <h2 id="test-all-loggers">Test All Loggers<a class="anchor" aria-label="anchor" href="#test-all-loggers"></a>
 </h2>
 <p>Debug messages should print nothing.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">log4r_debug</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">cat_debug</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="fu">logging_debug</span><span class="op">(</span><span class="op">)</span></span>
@@ -269,29 +246,26 @@ variable and defaults to hiding debug-level messages:</p>
 <span><span class="fu">rlog_debug</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p>Info messages should print to the console. Small differences in
 output format are to be expected.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">log4r_info</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; INFO  [2024-10-18 17:06:53] Info message.</span></span>
+<span><span class="co">#&gt; INFO  [2026-08-04 18:43:51] Info message.</span></span>
 <span><span class="fu">cat_info</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; INFO  [2024-10-18 17:06:53] Info message.</span></span>
+<span><span class="co">#&gt; INFO  [2026-08-04 18:43:51] Info message.</span></span>
 <span><span class="fu">logging_info</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 2024-10-18 17:06:53.607616 INFO::Info message.</span></span>
+<span><span class="co">#&gt; 2026-08-04 18:43:51.793405 INFO::Info message.</span></span>
 <span><span class="fu">fl_info</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; INFO [2024-10-18 17:06:53] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:51] Info message.</span></span>
 <span><span class="fu">logger_info</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; INFO [2024-10-18 17:06:53] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:51] Info message.</span></span>
 <span><span class="fu">lgr_info</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; INFO  [17:06:53.614] Info message.</span></span>
-<span><span class="fu">loggit_info</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; {"timestamp": "2024-10-18T17:06:53+0000", "log_lvl": "INFO", "log_msg": "Info message."}</span></span>
 <span><span class="fu">rlog_info</span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; 2024-10-18 17:06:53.617732 [INFO] Info message.</span></span></code></pre></div>
+<span><span class="co">#&gt; 2026-08-04 18:43:51 [INFO] Info message.</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="benchmarks">Benchmarks<a class="anchor" aria-label="anchor" href="#benchmarks"></a>
 </h2>
 <p>The following benchmarks all loggers defined above:</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">info_bench</span> <span class="op">&lt;-</span> <span class="fu">microbenchmark</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html" class="external-link">microbenchmark</a></span><span class="op">(</span></span>
 <span>  cat <span class="op">=</span> <span class="fu">cat_info</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  log4r <span class="op">=</span> <span class="fu">log4r_info</span><span class="op">(</span><span class="op">)</span>,</span>
@@ -299,11 +273,510 @@ output format are to be expected.</p>
 <span>  logging <span class="op">=</span> <span class="fu">logging_info</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  logger <span class="op">=</span> <span class="fu">logger_info</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  lgr <span class="op">=</span> <span class="fu">lgr_info</span><span class="op">(</span><span class="op">)</span>,</span>
-<span>  loggit <span class="op">=</span> <span class="fu">loggit_info</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  rlog <span class="op">=</span> <span class="fu">rlog_info</span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  times <span class="op">=</span> <span class="fl">500</span>,</span>
 <span>  control <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>warmups <span class="op">=</span> <span class="fl">50</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:51] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:51] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:51] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:51] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:51] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:51] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:51] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:51] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:51] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:51] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:51] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:51] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:51] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:51] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
+<span><span class="co">#&gt; INFO [2026-08-04 18:43:52] Info message.</span></span>
 <span></span>
 <span><span class="va">debug_bench</span> <span class="op">&lt;-</span> <span class="fu">microbenchmark</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/microbenchmark/man/microbenchmark.html" class="external-link">microbenchmark</a></span><span class="op">(</span></span>
 <span>  cat <span class="op">=</span> <span class="fu">cat_debug</span><span class="op">(</span><span class="op">)</span>,</span>
@@ -319,50 +792,48 @@ output format are to be expected.</p>
 <div class="section level3">
 <h3 id="how-long-does-it-take-to-print-messages">How long does it take to print messages?<a class="anchor" aria-label="anchor" href="#how-long-does-it-take-to-print-messages"></a>
 </h3>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">info_bench</span>, order <span class="op">=</span> <span class="st">"median"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Unit: microseconds</span></span>
-<span><span class="co">#&gt;           expr      min        lq       mean    median        uq</span></span>
-<span><span class="co">#&gt;          log4r   17.262   29.2740   34.57392   32.0800   37.8905</span></span>
-<span><span class="co">#&gt;            cat   30.307   38.4970   45.46430   43.5570   46.1010</span></span>
-<span><span class="co">#&gt;           rlog   74.098   90.7790   99.89871   97.6470  104.1990</span></span>
-<span><span class="co">#&gt;         logger  190.366  231.7925  255.01178  245.9495  274.5825</span></span>
-<span><span class="co">#&gt;        logging  313.906  360.2975  409.30649  381.5120  412.0390</span></span>
-<span><span class="co">#&gt;         loggit  606.622  659.2610  739.35553  682.8545  724.4570</span></span>
-<span><span class="co">#&gt;            lgr  852.732  901.8680 1043.21120  936.3430  998.3235</span></span>
-<span><span class="co">#&gt;  futile.logger 2503.744 2611.5095 2856.43062 2697.2695 2837.4910</span></span>
-<span><span class="co">#&gt;        max neval</span></span>
-<span><span class="co">#&gt;    898.257   500</span></span>
-<span><span class="co">#&gt;   1303.834   500</span></span>
-<span><span class="co">#&gt;    864.423   500</span></span>
-<span><span class="co">#&gt;   1459.253   500</span></span>
-<span><span class="co">#&gt;   6828.136   500</span></span>
-<span><span class="co">#&gt;   3504.751   500</span></span>
-<span><span class="co">#&gt;  30231.980   500</span></span>
-<span><span class="co">#&gt;   6640.775   500</span></span></code></pre></div>
+<span><span class="co">#&gt;           expr     min       lq      mean   median       uq       max</span></span>
+<span><span class="co">#&gt;          log4r  10.325  17.9270  24.57009  21.0265  26.5845   691.666</span></span>
+<span><span class="co">#&gt;            cat  17.666  22.6090  36.31622  27.9515  33.7600  2441.520</span></span>
+<span><span class="co">#&gt;           rlog  29.864  43.1640  54.64675  49.9740  57.1695  1010.969</span></span>
+<span><span class="co">#&gt;         logger 117.254 156.6175 201.23506 175.0190 189.8165  3382.906</span></span>
+<span><span class="co">#&gt;        logging 212.284 260.5220 313.80341 278.0525 300.1000  4977.119</span></span>
+<span><span class="co">#&gt;  futile.logger 333.584 400.6885 472.36851 427.4090 451.0540  6479.598</span></span>
+<span><span class="co">#&gt;            lgr 681.871 738.4400 948.78992 763.8925 809.7310 23301.659</span></span>
+<span><span class="co">#&gt;  neval</span></span>
+<span><span class="co">#&gt;    500</span></span>
+<span><span class="co">#&gt;    500</span></span>
+<span><span class="co">#&gt;    500</span></span>
+<span><span class="co">#&gt;    500</span></span>
+<span><span class="co">#&gt;    500</span></span>
+<span><span class="co">#&gt;    500</span></span>
+<span><span class="co">#&gt;    500</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="how-long-does-it-take-to-decide-to-do-nothing">How long does it take to decide to do nothing?<a class="anchor" aria-label="anchor" href="#how-long-does-it-take-to-decide-to-do-nothing"></a>
 </h3>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">debug_bench</span>, order <span class="op">=</span> <span class="st">"median"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Unit: microseconds</span></span>
-<span><span class="co">#&gt;           expr      min        lq        mean    median        uq</span></span>
-<span><span class="co">#&gt;            cat    2.104    3.1660    5.365492    4.4280    4.8090</span></span>
-<span><span class="co">#&gt;          log4r    2.514    3.8720    7.078490    5.3700    6.5870</span></span>
-<span><span class="co">#&gt;           rlog    6.663    8.5455   12.438306   11.9825   12.9790</span></span>
-<span><span class="co">#&gt;            lgr   13.475   16.1400   26.108580   21.1090   23.0880</span></span>
-<span><span class="co">#&gt;         logger   15.970   19.9225   27.435514   27.4610   29.6905</span></span>
-<span><span class="co">#&gt;        logging   17.564   22.4925   31.348734   31.0530   33.5830</span></span>
-<span><span class="co">#&gt;  futile.logger 1042.827 1065.4280 1138.980634 1082.8860 1112.9070</span></span>
-<span><span class="co">#&gt;       max neval</span></span>
-<span><span class="co">#&gt;   661.605   500</span></span>
-<span><span class="co">#&gt;   837.443   500</span></span>
-<span><span class="co">#&gt;   680.821   500</span></span>
-<span><span class="co">#&gt;  2165.763   500</span></span>
-<span><span class="co">#&gt;   732.828   500</span></span>
-<span><span class="co">#&gt;  1057.945   500</span></span>
-<span><span class="co">#&gt;  3283.479   500</span></span></code></pre></div>
+<span><span class="co">#&gt;           expr     min       lq       mean   median       uq      max</span></span>
+<span><span class="co">#&gt;            cat   1.482   1.7975   3.385488   2.1685   2.4730  569.504</span></span>
+<span><span class="co">#&gt;          log4r   1.843   2.2040   4.040102   2.6540   3.1850  601.391</span></span>
+<span><span class="co">#&gt;           rlog   5.107   5.7785   7.978178   6.7705   7.5760  555.824</span></span>
+<span><span class="co">#&gt;            lgr   9.143  10.1955  18.173194  11.3015  12.4085 2429.142</span></span>
+<span><span class="co">#&gt;         logger  11.257  12.4385  15.677594  14.0760  15.8235  573.520</span></span>
+<span><span class="co">#&gt;        logging  11.988  13.1290  16.714928  15.6030  17.2250  549.705</span></span>
+<span><span class="co">#&gt;  futile.logger 140.058 147.5885 161.259100 151.2950 158.6605 2612.083</span></span>
+<span><span class="co">#&gt;  neval</span></span>
+<span><span class="co">#&gt;    500</span></span>
+<span><span class="co">#&gt;    500</span></span>
+<span><span class="co">#&gt;    500</span></span>
+<span><span class="co">#&gt;    500</span></span>
+<span><span class="co">#&gt;    500</span></span>
+<span><span class="co">#&gt;    500</span></span>
+<span><span class="co">#&gt;    500</span></span></code></pre></div>
 </div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -378,7 +849,7 @@ output format are to be expected.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
   </div></footer>

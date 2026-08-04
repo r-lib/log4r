@@ -1,11 +1,11 @@
-pandoc: 3.1.11
-pkgdown: 2.1.1
+pandoc: 3.8.3
+pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   logging-beyond-local-files: logging-beyond-local-files.html
   performance: performance.html
   structured-logging: structured-logging.html
-last_built: 2024-10-18T17:06Z
+last_built: 2026-08-04T18:43Z
 urls:
   reference: https://log4r.r-lib.org/reference
   article: https://log4r.r-lib.org/articles

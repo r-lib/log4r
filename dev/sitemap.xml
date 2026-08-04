@@ -1,4 +1,5 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>https://log4r.r-lib.org/dev/AGENTS.html</loc></url>
 <url><loc>https://log4r.r-lib.org/dev/articles/index.html</loc></url>
 <url><loc>https://log4r.r-lib.org/dev/articles/logging-beyond-local-files.html</loc></url>
 <url><loc>https://log4r.r-lib.org/dev/articles/performance.html</loc></url>
