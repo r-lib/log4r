@@ -49,9 +49,9 @@ messages below the `"INFO"` level:
 logger <- logger()
 
 log_info(logger, "Located nearest gas station.")
-#> INFO  [2019-09-04 16:31:04] Located nearest gas station.
+#> INFO  [2026-08-04 14:31:21] Located nearest gas station.
 log_warn(logger, "Ez-Gas sensor network is not available.")
-#> WARN  [2019-09-04 16:31:04] Ez-Gas sensor network is not available.
+#> WARN  [2026-08-04 14:31:21] Ez-Gas sensor network is not available.
 log_debug(logger, "Debug messages are suppressed by default.")
 ```
 
@@ -67,8 +67,8 @@ log_info(logger, "Messages are now written to the file instead.")
 log_debug(logger, "Debug messages are now visible.")
 
 readLines(log_file)
-#> [1] "INFO  [2019-09-04 16:31:04] Messages are now written to the file instead."
-#> [2] "DEBUG [2019-09-04 16:31:04] Debug messages are now visible."
+#> [1] "INFO  [2026-08-04 14:31:21] Messages are now written to the file instead."
+#> [2] "DEBUG [2026-08-04 14:31:21] Debug messages are now visible."
 ```
 
 The `appenders` parameter takes a list, so you can log to multiple
@@ -91,7 +91,7 @@ my_layout <- function(level, ...) {
 
 logger <- logger(appenders = console_appender(my_layout))
 log_info(logger, "Messages should now look a little different.")
-#> 2019-09-04 16:31:04 [INFO] Messages should now look a little different.
+#> 2026-08-04 14:31:21 [INFO] Messages should now look a little different.
 ```
 
 With an appropriate layout, you can also use *structured logging*,
@@ -103,7 +103,7 @@ log_info(
   logger, message = "processed entries", file = "catpics_01.csv",
   entries = 4124, elapsed = 2.311
 )
-#> level=INFO ts=2021-10-22T20:19:21Z message="processed entries" file=catpics_01.csv entries=4124 elapsed=2.311
+#> level=INFO ts=2026-08-04T19:31:21.121189Z message="processed entries" file=catpics_01.csv entries=4124 elapsed=2.311
 ```
 
 ## Older APIs
@@ -113,8 +113,18 @@ used:
 
 ``` r
 logger <- create.logger()
+#> Warning: `create.logger()` was deprecated in log4r 0.5.0.
+#> ℹ Please use `logger()` instead.
+#> This warning is displayed once per session.
+#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+#> generated.
 
 logfile(logger) <- log_file
+#> Warning: `logfile()` was deprecated in log4r 0.5.0.
+#> ℹ Please use `logger()` instead.
+#> This warning is displayed once per session.
+#> Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+#> generated.
 level(logger) <- "INFO"
 
 debug(logger, 'A Debugging Message')
@@ -124,10 +134,10 @@ error(logger, 'An Error Message')
 fatal(logger, 'A Fatal Error Message')
 
 readLines(log_file)
-#> [1] "INFO  [2019-09-04 16:31:05] An Info Message"      
-#> [2] "WARN  [2019-09-04 16:31:05] A Warning Message"    
-#> [3] "ERROR [2019-09-04 16:31:05] An Error Message"     
-#> [4] "FATAL [2019-09-04 16:31:05] A Fatal Error Message"
+#> [1] "INFO  [2026-08-04 14:31:21] An Info Message"      
+#> [2] "WARN  [2026-08-04 14:31:21] A Warning Message"    
+#> [3] "ERROR [2026-08-04 14:31:21] An Error Message"     
+#> [4] "FATAL [2026-08-04 14:31:21] A Fatal Error Message"
 ```
 
 ## License
