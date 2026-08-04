@@ -61,9 +61,9 @@ simple("INFO", "Input has length ", 0, ".")
 
 with_timestamp <- default_log_layout()
 with_timestamp("INFO", "Input has length ", 0, ".")
-#> [1] "INFO  [2026-08-04 19:59:30] Input has length 0.\n"
+#> [1] "INFO  [2026-08-04 22:53:15] Input has length 0.\n"
 
 logfmt <- logfmt_log_layout()
 logfmt("INFO", msg = "got input", length = 24)
-#> [1] "level=INFO ts=2026-08-04T19:59:30.660036Z msg=\"got input\" length=24\n"
+#> [1] "level=INFO ts=2026-08-04T22:53:15.499686Z msg=\"got input\" length=24\n"
 ```

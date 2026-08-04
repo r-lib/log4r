@@ -29,7 +29,7 @@ For implementing your own layouts, see Details."><meta name="robots" content="no
 
     <a class="navbar-brand me-2" href="../index.html">log4r</a>
 
-    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.4.4.9000</small>
+    <small class="nav-text text-danger me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="In-development version">0.5.0.9000</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -117,11 +117,11 @@ interface can be passed as a layout to one of the existing <a href="appenders.ht
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">with_timestamp</span> <span class="op">&lt;-</span> <span class="fu">default_log_layout</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">with_timestamp</span><span class="op">(</span><span class="st">"INFO"</span>, <span class="st">"Input has length "</span>, <span class="fl">0</span>, <span class="st">"."</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "INFO  [2026-08-04 19:59:30] Input has length 0.\n"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "INFO  [2026-08-04 22:53:15] Input has length 0.\n"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">logfmt</span> <span class="op">&lt;-</span> <span class="fu">logfmt_log_layout</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">logfmt</span><span class="op">(</span><span class="st">"INFO"</span>, msg <span class="op">=</span> <span class="st">"got input"</span>, length <span class="op">=</span> <span class="fl">24</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "level=INFO ts=2026-08-04T19:59:30.660036Z msg=\"got input\" length=24\n"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "level=INFO ts=2026-08-04T22:53:15.499686Z msg=\"got input\" length=24\n"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

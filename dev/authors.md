@@ -23,13 +23,13 @@ Source:
 [`DESCRIPTION`](https://github.com/r-lib/log4r/blob/main/DESCRIPTION)
 
 White J, Jacobs A (2026). *log4r: A Fast and Lightweight Logging System
-for R, Based on 'log4j'*. R package version 0.4.4.9000,
+for R, Based on 'log4j'*. R package version 0.5.0.9000,
 <https://github.com/r-lib/log4r>.
 
     @Manual{,
       title = {log4r: A Fast and Lightweight Logging System for R, Based on 'log4j'},
       author = {John Myles White and Aaron Jacobs},
       year = {2026},
-      note = {R package version 0.4.4.9000},
+      note = {R package version 0.5.0.9000},
       url = {https://github.com/r-lib/log4r},
     }

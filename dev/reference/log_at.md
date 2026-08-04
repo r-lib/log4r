@@ -45,14 +45,14 @@ appenders.
 logger <- logger()
 
 log_at(logger, "WARN", "First warning from our code")
-#> WARN  [2026-08-04 19:59:31] First warning from our code
+#> WARN  [2026-08-04 22:53:16] First warning from our code
 log_debug(logger, "Debugging our code")
 log_info(logger, "Information about our code")
-#> INFO  [2026-08-04 19:59:31] Information about our code
+#> INFO  [2026-08-04 22:53:16] Information about our code
 log_warn(logger, "Another warning from our code")
-#> WARN  [2026-08-04 19:59:31] Another warning from our code
+#> WARN  [2026-08-04 22:53:16] Another warning from our code
 log_error(logger, "An error from our code")
-#> ERROR [2026-08-04 19:59:31] An error from our code
+#> ERROR [2026-08-04 22:53:16] An error from our code
 log_fatal(logger, "I'm outta here")
-#> FATAL [2026-08-04 19:59:31] I'm outta here
+#> FATAL [2026-08-04 22:53:16] I'm outta here
 ```
