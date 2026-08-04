@@ -18,18 +18,19 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Aaron Jacobs \email{atheriel@gmail.com}
+\strong{Maintainer}: Hadley Wickham \email{hadley@posit.co} (\href{https://orcid.org/0000-0003-4757-117X}{ORCID})
 
 Authors:
 \itemize{
-  \item Aaron Jacobs \email{atheriel@gmail.com}
   \item John Myles White [copyright holder]
+  \item Aaron Jacobs \email{atheriel@gmail.com}
 }
 
 Other contributors:
 \itemize{
   \item Kenton White [contributor]
   \item Kirill Müller \email{krlmlr+r@mailbox.org} [contributor]
+  \item Posit Software, PBC (\href{https://ror.org/03wc8by49}{ROR}) [copyright holder, funder]
 }
 
 }
