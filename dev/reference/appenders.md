@@ -35,6 +35,11 @@ file_appender(file, append = TRUE, layout = default_log_layout())
   When `TRUE`, the file is not truncated when opening for the first
   time.
 
+## Value
+
+An appender: a function with the interface `function(level, ...)` that
+writes its arguments to a destination and returns `invisible(NULL)`.
+
 ## Details
 
 Appenders are implemented as functions with the interface
@@ -54,5 +59,5 @@ arguments to a destination and return `invisible(NULL)`.
 # following snippet will write the message to the console.
 appender <- console_appender()
 appender("INFO", "Input has length ", 0, ".")
-#> INFO  [2026-08-04 18:45:25] Input has length 0.
+#> INFO  [2026-08-04 19:26:04] Input has length 0.
 ```

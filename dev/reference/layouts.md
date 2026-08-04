@@ -37,6 +37,11 @@ json_log_layout()
   A valid format string for timestamps. See
   [`base::strptime()`](https://rdrr.io/r/base/strptime.html).
 
+## Value
+
+A layout: a function with the interface `function(level, ...)` that
+returns a single newline-terminated string.
+
 ## Details
 
 Layouts return a function with the signature `function(level, ...)` that
@@ -56,9 +61,9 @@ simple("INFO", "Input has length ", 0, ".")
 
 with_timestamp <- default_log_layout()
 with_timestamp("INFO", "Input has length ", 0, ".")
-#> [1] "INFO  [2026-08-04 18:45:25] Input has length 0.\n"
+#> [1] "INFO  [2026-08-04 19:26:05] Input has length 0.\n"
 
 logfmt <- logfmt_log_layout()
 logfmt("INFO", msg = "got input", length = 24)
-#> [1] "level=INFO ts=2026-08-04T18:45:25.922898Z msg=\"got input\" length=24\n"
+#> [1] "level=INFO ts=2026-08-04T19:26:05.127760Z msg=\"got input\" length=24\n"
 ```

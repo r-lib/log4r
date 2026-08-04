@@ -82,3 +82,24 @@ error(logger, ...)
 
 fatal(logger, ...)
 ```
+
+## Value
+
+`logformat()` and `logformat<-()` always throw an error. `logfile()`
+returns the path the logger writes to and `logfile<-()` returns the
+modified logger. The remaining functions return the same values as their
+replacements.
+
+## Examples
+
+``` r
+# Deprecated: configure a logger with create.logger().
+logger <- create.logger(logfile = tempfile(), level = "INFO")
+#> Warning: `create.logger()` was deprecated in log4r 0.5.0.
+#> ℹ Please use `logger()` instead.
+info(logger, "A message.")
+
+# Instead, use logger() with an appender:
+logger <- logger("INFO", appenders = file_appender(tempfile()))
+log_info(logger, "A message.")
+```

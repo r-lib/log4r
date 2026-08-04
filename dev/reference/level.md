@@ -29,6 +29,12 @@ available.loglevels()
 
   One of `"DEBUG"`, `"INFO"`, `"WARN"`, `"ERROR"`, or `"FATAL"`.
 
+## Value
+
+`level()` returns the logger's threshold and `level<-()` returns the
+modified logger. `available.loglevels()` returns a named list of all
+thresholds.
+
 ## Examples
 
 ``` r
@@ -36,7 +42,7 @@ lgr <- logger()
 level(lgr) # Prints "INFO".
 #> INFO 
 info(lgr, "This message is shown.")
-#> INFO  [2026-08-04 18:45:26] This message is shown.
+#> INFO  [2026-08-04 19:26:05] This message is shown.
 level(lgr) <- "FATAL"
 info(lgr, "This message is now suppressed.")
 ```

@@ -8,24 +8,28 @@ object-oriented approach to logging in R based on the widely-emulated
 
 Useful links:
 
-- <https://github.com/johnmyleswhite/log4r>
+- <https://github.com/r-lib/log4r>
 
 - <https://log4r.r-lib.org>
 
-- Report bugs at <https://github.com/johnmyleswhite/log4r/issues>
+- Report bugs at <https://github.com/r-lib/log4r/issues>
 
 ## Author
 
-**Maintainer**: Aaron Jacobs <atheriel@gmail.com>
+**Maintainer**: Hadley Wickham <hadley@posit.co>
+([ORCID](https://orcid.org/0000-0003-4757-117X))
 
 Authors:
 
-- Aaron Jacobs <atheriel@gmail.com>
-
 - John Myles White \[copyright holder\]
+
+- Aaron Jacobs <atheriel@gmail.com>
 
 Other contributors:
 
 - Kenton White \[contributor\]
 
 - Kirill Müller <krlmlr+r@mailbox.org> \[contributor\]
+
+- Posit Software, PBC ([ROR](https://ror.org/03wc8by49)) \[copyright
+  holder, funder\]

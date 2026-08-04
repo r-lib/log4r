@@ -25,7 +25,7 @@
 <li class="active nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/johnmyleswhite/log4r/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/r-lib/log4r/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -35,13 +35,13 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/johnmyleswhite/log4r/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/r-lib/log4r/blob/main/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4.4.9000" id="log4r-0449000">log4r 0.4.4.9000<a class="anchor" aria-label="anchor" href="#log4r-0449000"></a></h2>
 <ul><li><p><code><a href="../reference/layouts.html">logfmt_log_layout()</a></code> and <code><a href="../reference/layouts.html">json_log_layout()</a></code> now use timestamps with microsecond precision, when possible.</p></li>
-<li><p><code><a href="../reference/log4r-deprecated.html">debug()</a></code>, <code><a href="../reference/log4r-deprecated.html">info()</a></code>, <code><a href="../reference/log4r-deprecated.html">warn()</a></code>, <code><a href="../reference/log4r-deprecated.html">error()</a></code>, and <code><a href="../reference/log4r-deprecated.html">fatal()</a></code> are deprecated in favour of the newly-exported <code><a href="../reference/log_at.html">log_debug()</a></code>, <code><a href="../reference/log_at.html">log_info()</a></code>, <code><a href="../reference/log_at.html">log_warn()</a></code>, <code><a href="../reference/log_at.html">log_error()</a></code>, and <code><a href="../reference/log_at.html">log_fatal()</a></code>, respectively, though for performance reasons they do not yet issue deprecation warnings when used. These older functions tended to cause namespace issues with other packages or base R itself (<a href="https://github.com/johnmyleswhite/log4r/issues/29" class="external-link">#29</a>).</p></li>
+<li><p><code><a href="../reference/log4r-deprecated.html">debug()</a></code>, <code><a href="../reference/log4r-deprecated.html">info()</a></code>, <code><a href="../reference/log4r-deprecated.html">warn()</a></code>, <code><a href="../reference/log4r-deprecated.html">error()</a></code>, and <code><a href="../reference/log4r-deprecated.html">fatal()</a></code> are deprecated in favour of the newly-exported <code><a href="../reference/log_at.html">log_debug()</a></code>, <code><a href="../reference/log_at.html">log_info()</a></code>, <code><a href="../reference/log_at.html">log_warn()</a></code>, <code><a href="../reference/log_at.html">log_error()</a></code>, and <code><a href="../reference/log_at.html">log_fatal()</a></code>, respectively, though for performance reasons they do not yet issue deprecation warnings when used. These older functions tended to cause namespace issues with other packages or base R itself (<a href="https://github.com/r-lib/log4r/issues/29" class="external-link">#29</a>).</p></li>
 <li><p>Much of the pre-0.3.0 logger API is now formally deprecated and issues warnings when used. This includes <code><a href="../reference/log4r-deprecated.html">create.logger()</a></code> and <code><a href="../reference/log4r-deprecated.html">logfile()</a></code>.</p></li>
 <li><p><code><a href="../reference/log4r-deprecated.html">is.loglevel()</a></code>, <code><a href="../reference/log4r-deprecated.html">as.loglevel()</a></code>, its alias <code><a href="../reference/log4r-deprecated.html">loglevel()</a></code>, and S3 generics for the <code>"loglevel"</code> class are now considered an implementation detail and are no longer part of the public API. They now issue deprecation warnings when used. Hopefully this makes way for adding a <code>TRACE</code> level and corresponding <code>log_trace()</code> function in the future. The obscure <code><a href="../reference/log4r-deprecated.html">verbosity()</a></code> function is also now deprecated, for similar reasons.</p></li>
 <li><p>Errors have been migrated to <code><a href="https://cli.r-lib.org/reference/cli_abort.html" class="external-link">cli::cli_abort()</a></code> and are now much friendlier and actionable as a result.</p></li>
@@ -49,10 +49,10 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4.4" id="log4r-044">log4r 0.4.4<a class="anchor" aria-label="anchor" href="#log4r-044"></a></h2><p class="text-muted">CRAN release: 2024-10-12</p>
 <ul><li><p>Fixes failing unit tests for the HTTP appender.</p></li>
-<li><p>JSON logs now have newlines, as intended (<a href="https://github.com/johnmyleswhite/log4r/issues/30" class="external-link">#30</a>, <a href="https://github.com/brooklynbagel" class="external-link">@brooklynbagel</a>).</p></li>
-<li><p>Updates the R CMD check GitHub Action to a modern version (<a href="https://github.com/johnmyleswhite/log4r/issues/27" class="external-link">#27</a>, <a href="https://github.com/hadley" class="external-link">@hadley</a>).</p></li>
-<li><p>Updates the project to <code>testthat</code> 3e (<a href="https://github.com/johnmyleswhite/log4r/issues/26" class="external-link">#26</a>, <a href="https://github.com/hadley" class="external-link">@hadley</a>).</p></li>
-<li><p>Updates <code>roxygen2</code> documentation to use Markdown syntax (<a href="https://github.com/johnmyleswhite/log4r/issues/25" class="external-link">#25</a>, <a href="https://github.com/hadley" class="external-link">@hadley</a>).</p></li>
+<li><p>JSON logs now have newlines, as intended (<a href="https://github.com/r-lib/log4r/issues/30" class="external-link">#30</a>, <a href="https://github.com/brooklynbagel" class="external-link">@brooklynbagel</a>).</p></li>
+<li><p>Updates the R CMD check GitHub Action to a modern version (<a href="https://github.com/r-lib/log4r/issues/27" class="external-link">#27</a>, <a href="https://github.com/hadley" class="external-link">@hadley</a>).</p></li>
+<li><p>Updates the project to <code>testthat</code> 3e (<a href="https://github.com/r-lib/log4r/issues/26" class="external-link">#26</a>, <a href="https://github.com/hadley" class="external-link">@hadley</a>).</p></li>
+<li><p>Updates <code>roxygen2</code> documentation to use Markdown syntax (<a href="https://github.com/r-lib/log4r/issues/25" class="external-link">#25</a>, <a href="https://github.com/hadley" class="external-link">@hadley</a>).</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.4.3" id="log4r-043">log4r 0.4.3<a class="anchor" aria-label="anchor" href="#log4r-043"></a></h2><p class="text-muted">CRAN release: 2022-11-28</p>
@@ -72,7 +72,7 @@
 <ul><li><p>Support for structured logging by passing additional named parameters to the existing logging functions. This includes two new structured-logging layouts for JSON and <a href="https://brandur.org/logfmt" class="external-link">logfmt</a> and a vignette on using them: “Structured Logging”.</p></li>
 <li><p>New built-in appenders for writing to the Unix system log, via HTTP, and to TCP connections, plus a vignette on using them: “Logging Beyond Local Files”.</p></li>
 <li><p>A new <code><a href="../reference/layouts.html">bare_log_layout()</a></code> for when you don’t want the level or timestamp handled automatically. This is most useful for the <code><a href="../reference/syslog_appender.html">syslog_appender()</a></code>.</p></li>
-<li><p>Log messages prior to the last entry are no longer lost when a file appender is created with <code>append = FALSE</code>. Instead, the file is truncated only when the appender is created, as intended. Fixes <a href="https://github.com/johnmyleswhite/log4r/issues/17" class="external-link">#17</a>.</p></li>
+<li><p>Log messages prior to the last entry are no longer lost when a file appender is created with <code>append = FALSE</code>. Instead, the file is truncated only when the appender is created, as intended. Fixes <a href="https://github.com/r-lib/log4r/issues/17" class="external-link">#17</a>.</p></li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.2" id="log4r-032-2020-01-17">log4r 0.3.2 (2020-01-17)<a class="anchor" aria-label="anchor" href="#log4r-032-2020-01-17"></a></h2><p class="text-muted">CRAN release: 2020-01-18</p>
@@ -81,7 +81,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.1" id="log4r-031-2019-09-04">log4r 0.3.1 (2019-09-04)<a class="anchor" aria-label="anchor" href="#log4r-031-2019-09-04"></a></h2><p class="text-muted">CRAN release: 2019-09-04</p>
 <ul><li>There is now a vignette on logger performance.</li>
-<li>Fixes a missing header file on older versions of R (&lt;= 3.4). (<a href="https://github.com/johnmyleswhite/log4r/issues/12" class="external-link">#12</a>)</li>
+<li>Fixes a missing header file on older versions of R (&lt;= 3.4). (<a href="https://github.com/r-lib/log4r/issues/12" class="external-link">#12</a>)</li>
 <li>Fixes an issue where <code><a href="../reference/layouts.html">default_log_layout()</a></code> would not validate format strings correctly.</li>
 </ul></div>
     <div class="section level2">
@@ -97,7 +97,7 @@
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.1-5" id="log4r-01-5-2014-09-28">log4r 0.1-5 (2014-09-28)<a class="anchor" aria-label="anchor" href="#log4r-01-5-2014-09-28"></a></h2>
 <ul><li>New maintainer: Kirill Müller (<a href="mailto:krlmlr+r@mailbox.org" class="email">krlmlr+r@mailbox.org</a>)</li>
-<li>Log levels are now objects of class <code>"loglevel"</code>, access to the hidden constants, e.g., <code>log4r:::DEBUG</code>, is deprecated (<a href="https://github.com/johnmyleswhite/log4r/issues/4" class="external-link">#4</a>).</li>
+<li>Log levels are now objects of class <code>"loglevel"</code>, access to the hidden constants, e.g., <code>log4r:::DEBUG</code>, is deprecated (<a href="https://github.com/r-lib/log4r/issues/4" class="external-link">#4</a>).</li>
 </ul></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
@@ -106,7 +106,7 @@
    </div>
   <footer><div class="container">
   <div class="pkgdown-footer-left">
-  <p>Developed by John Myles White, Aaron Jacobs.</p>
+  <p>Developed by John Myles White, Aaron Jacobs, <a href="https://www.posit.co" class="external-link"><img src="https://www.tidyverse.org/posit-logo.svg" alt="Posit" height="16" width="62" style="margin-bottom: 3px;"></a>, <a href="https://hadley.nz" class="external-link">Hadley Wickham</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

@@ -47,7 +47,7 @@ For implementing your own layouts, see Details."><meta name="robots" content="no
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/johnmyleswhite/log4r/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/r-lib/log4r/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -57,7 +57,7 @@ For implementing your own layouts, see Details."><meta name="robots" content="no
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Format logs with Layouts</h1>
-      <small class="dont-index">Source: <a href="https://github.com/johnmyleswhite/log4r/blob/main/R/layouts.R" class="external-link"><code>R/layouts.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-lib/log4r/blob/main/R/layouts.R" class="external-link"><code>R/layouts.R</code></a></small>
       <div class="d-none name"><code>layouts.Rd</code></div>
     </div>
 
@@ -96,6 +96,11 @@ two most popular machine-readable formats.</p></li>
 
 </dl></div>
     <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <p>A layout: a function with the interface <code>function(level, ...)</code> that
+returns a single newline-terminated string.</p>
+    </div>
+    <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
     <p>Layouts return a function with the signature <code>function(level, ...)</code> that
 itself returns a single newline-terminated string. Anything that meets this
@@ -112,11 +117,11 @@ interface can be passed as a layout to one of the existing <a href="appenders.ht
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">with_timestamp</span> <span class="op">&lt;-</span> <span class="fu">default_log_layout</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">with_timestamp</span><span class="op">(</span><span class="st">"INFO"</span>, <span class="st">"Input has length "</span>, <span class="fl">0</span>, <span class="st">"."</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "INFO  [2026-08-04 18:45:25] Input has length 0.\n"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "INFO  [2026-08-04 19:26:05] Input has length 0.\n"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">logfmt</span> <span class="op">&lt;-</span> <span class="fu">logfmt_log_layout</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">logfmt</span><span class="op">(</span><span class="st">"INFO"</span>, msg <span class="op">=</span> <span class="st">"got input"</span>, length <span class="op">=</span> <span class="fl">24</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "level=INFO ts=2026-08-04T18:45:25.922898Z msg=\"got input\" length=24\n"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "level=INFO ts=2026-08-04T19:26:05.127760Z msg=\"got input\" length=24\n"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
@@ -126,7 +131,7 @@ interface can be passed as a layout to one of the existing <a href="appenders.ht
    </div>
   <footer><div class="container">
   <div class="pkgdown-footer-left">
-  <p>Developed by John Myles White, Aaron Jacobs.</p>
+  <p>Developed by John Myles White, Aaron Jacobs, <a href="https://www.posit.co" class="external-link"><img src="https://www.tidyverse.org/posit-logo.svg" alt="Posit" height="16" width="62" style="margin-bottom: 3px;"></a>, <a href="https://hadley.nz" class="external-link">Hadley Wickham</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

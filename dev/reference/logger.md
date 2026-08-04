@@ -45,8 +45,8 @@ information on controlling the behaviour of the logger object.
 logger <- logger()
 
 log_info(logger, "Located nearest gas station.")
-#> INFO  [2026-08-04 18:45:26] Located nearest gas station.
+#> INFO  [2026-08-04 19:26:06] Located nearest gas station.
 log_warn(logger, "Ez-Gas sensor network is not available.")
-#> WARN  [2026-08-04 18:45:26] Ez-Gas sensor network is not available.
+#> WARN  [2026-08-04 19:26:06] Ez-Gas sensor network is not available.
 log_debug(logger, "Debug messages are suppressed by default.")
 ```

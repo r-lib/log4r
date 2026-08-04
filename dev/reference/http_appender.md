@@ -31,6 +31,11 @@ http_appender(url, method = "POST", layout = default_log_layout(), ...)
   Further arguments passed on to
   [`httr::POST()`](https://httr.r-lib.org/reference/POST.html).
 
+## Value
+
+An appender: a function with the interface `function(level, ...)` that
+submits its arguments to `url` and returns `invisible(NULL)`.
+
 ## See also
 
 [appenders](https://log4r.r-lib.org/dev/reference/appenders.md) for more

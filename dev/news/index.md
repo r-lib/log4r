@@ -22,7 +22,7 @@
   respectively, though for performance reasons they do not yet issue
   deprecation warnings when used. These older functions tended to cause
   namespace issues with other packages or base R itself
-  ([\#29](https://github.com/johnmyleswhite/log4r/issues/29)).
+  ([\#29](https://github.com/r-lib/log4r/issues/29)).
 
 - Much of the pre-0.3.0 logger API is now formally deprecated and issues
   warnings when used. This includes
@@ -53,19 +53,19 @@ CRAN release: 2024-10-12
 - Fixes failing unit tests for the HTTP appender.
 
 - JSON logs now have newlines, as intended
-  ([\#30](https://github.com/johnmyleswhite/log4r/issues/30),
+  ([\#30](https://github.com/r-lib/log4r/issues/30),
   [@brooklynbagel](https://github.com/brooklynbagel)).
 
 - Updates the R CMD check GitHub Action to a modern version
-  ([\#27](https://github.com/johnmyleswhite/log4r/issues/27),
+  ([\#27](https://github.com/r-lib/log4r/issues/27),
   [@hadley](https://github.com/hadley)).
 
 - Updates the project to `testthat` 3e
-  ([\#26](https://github.com/johnmyleswhite/log4r/issues/26),
+  ([\#26](https://github.com/r-lib/log4r/issues/26),
   [@hadley](https://github.com/hadley)).
 
 - Updates `roxygen2` documentation to use Markdown syntax
-  ([\#25](https://github.com/johnmyleswhite/log4r/issues/25),
+  ([\#25](https://github.com/r-lib/log4r/issues/25),
   [@hadley](https://github.com/hadley)).
 
 ## log4r 0.4.3
@@ -120,7 +120,7 @@ CRAN release: 2021-10-26
 - Log messages prior to the last entry are no longer lost when a file
   appender is created with `append = FALSE`. Instead, the file is
   truncated only when the appender is created, as intended. Fixes
-  [\#17](https://github.com/johnmyleswhite/log4r/issues/17).
+  [\#17](https://github.com/r-lib/log4r/issues/17).
 
 ## log4r 0.3.2 (2020-01-17)
 
@@ -136,7 +136,7 @@ CRAN release: 2019-09-04
 
 - There is now a vignette on logger performance.
 - Fixes a missing header file on older versions of R (\<= 3.4).
-  ([\#12](https://github.com/johnmyleswhite/log4r/issues/12))
+  ([\#12](https://github.com/r-lib/log4r/issues/12))
 - Fixes an issue where
   [`default_log_layout()`](https://log4r.r-lib.org/dev/reference/layouts.md)
   would not validate format strings correctly.
@@ -164,4 +164,4 @@ CRAN release: 2014-09-29
 - New maintainer: Kirill Müller (<krlmlr+r@mailbox.org>)
 - Log levels are now objects of class `"loglevel"`, access to the hidden
   constants, e.g., `log4r:::DEBUG`, is deprecated
-  ([\#4](https://github.com/johnmyleswhite/log4r/issues/4)).
+  ([\#4](https://github.com/r-lib/log4r/issues/4)).

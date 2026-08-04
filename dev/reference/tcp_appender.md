@@ -32,9 +32,24 @@ tcp_appender(
 
   Timeout for the connection.
 
+## Value
+
+An appender: a function with the interface `function(level, ...)` that
+writes its arguments to the socket and returns `invisible(NULL)`.
+
 ## See also
 
 [appenders](https://log4r.r-lib.org/dev/reference/appenders.md) for more
 information on Appenders, and
 [`base::socketConnection()`](https://rdrr.io/r/base/connections.html)
 for the underlying connection object used by `tcp_appender()`.
+
+## Examples
+
+``` r
+if (FALSE) { # \dontrun{
+# Send messages to a listener on localhost.
+appender <- tcp_appender("localhost", port = 8080)
+appender("INFO", "Message.")
+} # }
+```

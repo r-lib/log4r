@@ -49,7 +49,7 @@ facilitate this:
 
 ``` r
 
-logger <- logger(appenders = http_appender("http://logging.example.local"))
+logger <- logger(appenders = http_appender("https://logging.example.local"))
 ```
 
 Some services use `GET` or `PUT` requests instead of the more intuitive
@@ -58,7 +58,7 @@ Some services use `GET` or `PUT` requests instead of the more intuitive
 ``` r
 
 logger <- logger(
-  appenders = http_appender("http://logging.example.local", method = "GET")
+  appenders = http_appender("https://logging.example.local", method = "GET")
 )
 ```
 
@@ -70,7 +70,7 @@ additional parameters to the underlying **httr** verb function:
 
 logger <- logger(
   appenders = http_appender(
-    "http://logging.example.local",
+    "https://logging.example.local",
     method = "GET",
     layout = default_log_layout(),
     httr::add_headers(`X-Custom-Header` = 1),

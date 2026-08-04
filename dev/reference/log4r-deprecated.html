@@ -63,7 +63,7 @@ used.
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/johnmyleswhite/log4r/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/r-lib/log4r/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -73,7 +73,7 @@ used.
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Deprecated logger functions</h1>
-      <small class="dont-index">Source: <a href="https://github.com/johnmyleswhite/log4r/blob/main/R/deprecated.R" class="external-link"><code>R/deprecated.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-lib/log4r/blob/main/R/deprecated.R" class="external-link"><code>R/deprecated.R</code></a></small>
       <div class="d-none name"><code>log4r-deprecated.Rd</code></div>
     </div>
 
@@ -145,14 +145,35 @@ used.</p></li>
 <span><span class="fu">fatal</span><span class="op">(</span><span class="va">logger</span>, <span class="va">...</span><span class="op">)</span></span></code></pre></div>
     </div>
 
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <p><code>logformat()</code> and <code>logformat&lt;-()</code> always throw an error. <code>logfile()</code>
+returns the path the logger writes to and <code>logfile&lt;-()</code> returns the
+modified logger. The remaining functions return the same values as their
+replacements.</p>
+    </div>
 
-  </main></div>
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># Deprecated: configure a logger with create.logger().</span></span></span>
+<span class="r-in"><span><span class="va">logger</span> <span class="op">&lt;-</span> <span class="fu">create.logger</span><span class="op">(</span>logfile <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span>, level <span class="op">=</span> <span class="st">"INFO"</span><span class="op">)</span></span></span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>`create.logger()` was deprecated in log4r 0.5.0.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span style="color: #00BBBB;">ℹ</span> Please use `logger()` instead.</span>
+<span class="r-in"><span><span class="fu">info</span><span class="op">(</span><span class="va">logger</span>, <span class="st">"A message."</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co"># Instead, use logger() with an appender:</span></span></span>
+<span class="r-in"><span><span class="va">logger</span> <span class="op">&lt;-</span> <span class="fu"><a href="logger.html">logger</a></span><span class="op">(</span><span class="st">"INFO"</span>, appenders <span class="op">=</span> <span class="fu"><a href="appenders.html">file_appender</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="log_at.html">log_info</a></span><span class="op">(</span><span class="va">logger</span>, <span class="st">"A message."</span><span class="op">)</span></span></span>
+</code></pre></div>
+    </div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
    </div>
   <footer><div class="container">
   <div class="pkgdown-footer-left">
-  <p>Developed by John Myles White, Aaron Jacobs.</p>
+  <p>Developed by John Myles White, Aaron Jacobs, <a href="https://www.posit.co" class="external-link"><img src="https://www.tidyverse.org/posit-logo.svg" alt="Posit" height="16" width="62" style="margin-bottom: 3px;"></a>, <a href="https://hadley.nz" class="external-link">Hadley Wickham</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

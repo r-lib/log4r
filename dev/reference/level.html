@@ -27,7 +27,7 @@ The level() accessor allows doing so."><meta name="robots" content="noindex"><sc
 <li class="nav-item"><a class="nav-link" href="../news/index.html">Changelog</a></li>
       </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/johnmyleswhite/log4r/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/r-lib/log4r/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul></div>
 
 
@@ -37,7 +37,7 @@ The level() accessor allows doing so."><meta name="robots" content="noindex"><sc
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Set the logging threshold level for a logger dynamically</h1>
-      <small class="dont-index">Source: <a href="https://github.com/johnmyleswhite/log4r/blob/main/R/level.R" class="external-link"><code>R/level.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-lib/log4r/blob/main/R/level.R" class="external-link"><code>R/level.R</code></a></small>
       <div class="d-none name"><code>level.Rd</code></div>
     </div>
 
@@ -73,6 +73,12 @@ The <code>level()</code> accessor allows doing so.</p>
 <dd><p>One of <code>"DEBUG"</code>, <code>"INFO"</code>, <code>"WARN"</code>, <code>"ERROR"</code>, or <code>"FATAL"</code>.</p></dd>
 
 </dl></div>
+    <div class="section level2">
+    <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
+    <p><code>level()</code> returns the logger's threshold and <code>level&lt;-()</code> returns the
+modified logger. <code>available.loglevels()</code> returns a named list of all
+thresholds.</p>
+    </div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
@@ -80,7 +86,7 @@ The <code>level()</code> accessor allows doing so.</p>
 <span class="r-in"><span><span class="fu">level</span><span class="op">(</span><span class="va">lgr</span><span class="op">)</span> <span class="co"># Prints "INFO".</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> INFO </span>
 <span class="r-in"><span><span class="fu"><a href="log4r-deprecated.html">info</a></span><span class="op">(</span><span class="va">lgr</span>, <span class="st">"This message is shown."</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> INFO  [2026-08-04 18:45:26] This message is shown.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> INFO  [2026-08-04 19:26:05] This message is shown.</span>
 <span class="r-in"><span><span class="fu">level</span><span class="op">(</span><span class="va">lgr</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="st">"FATAL"</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="log4r-deprecated.html">info</a></span><span class="op">(</span><span class="va">lgr</span>, <span class="st">"This message is now suppressed."</span><span class="op">)</span></span></span>
 </code></pre></div>
@@ -92,7 +98,7 @@ The <code>level()</code> accessor allows doing so.</p>
    </div>
   <footer><div class="container">
   <div class="pkgdown-footer-left">
-  <p>Developed by John Myles White, Aaron Jacobs.</p>
+  <p>Developed by John Myles White, Aaron Jacobs, <a href="https://www.posit.co" class="external-link"><img src="https://www.tidyverse.org/posit-logo.svg" alt="Posit" height="16" width="62" style="margin-bottom: 3px;"></a>, <a href="https://hadley.nz" class="external-link">Hadley Wickham</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">

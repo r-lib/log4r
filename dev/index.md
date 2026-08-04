@@ -30,7 +30,7 @@ from GitHub as follows:
 ``` r
 
 # install.packages("remotes")
-remotes::install_github("johnmyleswhite/log4r")
+remotes::install_github("r-lib/log4r")
 ```
 
 ## Usage

@@ -48,7 +48,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/johnmyleswhite/log4r/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/r-lib/log4r/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -66,7 +66,7 @@
             
             <h4 data-toc-skip class="date">Updated as of 2026-08-04</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/johnmyleswhite/log4r/blob/main/vignettes/logging-beyond-local-files.Rmd" class="external-link"><code>vignettes/logging-beyond-local-files.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-lib/log4r/blob/main/vignettes/logging-beyond-local-files.Rmd" class="external-link"><code>vignettes/logging-beyond-local-files.Rmd</code></a></small>
       <div class="d-none name"><code>logging-beyond-local-files.Rmd</code></div>
     </div>
 
@@ -119,13 +119,13 @@ logs from Windows), the next most-common approach is to send them over
 HTTP. Log aggregation services usually provide an HTTP API endpoint to
 facilitate this:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">logger</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/logger.html">logger</a></span><span class="op">(</span>appenders <span class="op">=</span> <span class="fu"><a href="../reference/http_appender.html">http_appender</a></span><span class="op">(</span><span class="st">"http://logging.example.local"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">logger</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/logger.html">logger</a></span><span class="op">(</span>appenders <span class="op">=</span> <span class="fu"><a href="../reference/http_appender.html">http_appender</a></span><span class="op">(</span><span class="st">"https://logging.example.local"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p>Some services use <code>GET</code> or <code>PUT</code> requests
 instead of the more intuitive <code>POST</code>, which you can opt into
 as follows:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">logger</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/logger.html">logger</a></span><span class="op">(</span></span>
-<span>  appenders <span class="op">=</span> <span class="fu"><a href="../reference/http_appender.html">http_appender</a></span><span class="op">(</span><span class="st">"http://logging.example.local"</span>, method <span class="op">=</span> <span class="st">"GET"</span><span class="op">)</span></span>
+<span>  appenders <span class="op">=</span> <span class="fu"><a href="../reference/http_appender.html">http_appender</a></span><span class="op">(</span><span class="st">"https://logging.example.local"</span>, method <span class="op">=</span> <span class="st">"GET"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
 <p>Finally, if you need complete control over the HTTP request (for
 example, to send a specific header or use authentication), you can pass
@@ -134,7 +134,7 @@ function:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">logger</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/logger.html">logger</a></span><span class="op">(</span></span>
 <span>  appenders <span class="op">=</span> <span class="fu"><a href="../reference/http_appender.html">http_appender</a></span><span class="op">(</span></span>
-<span>    <span class="st">"http://logging.example.local"</span>,</span>
+<span>    <span class="st">"https://logging.example.local"</span>,</span>
 <span>    method <span class="op">=</span> <span class="st">"GET"</span>,</span>
 <span>    layout <span class="op">=</span> <span class="fu"><a href="../reference/layouts.html">default_log_layout</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    <span class="fu">httr</span><span class="fu">::</span><span class="fu"><a href="https://httr.r-lib.org/reference/add_headers.html" class="external-link">add_headers</a></span><span class="op">(</span>`X-Custom-Header` <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>,</span>
@@ -165,7 +165,7 @@ directly at a TCP port:</p>
    </div>
   <footer><div class="container">
   <div class="pkgdown-footer-left">
-  <p>Developed by John Myles White, Aaron Jacobs.</p>
+  <p>Developed by John Myles White, Aaron Jacobs, <a href="https://www.posit.co" class="external-link"><img src="https://www.tidyverse.org/posit-logo.svg" alt="Posit" height="16" width="62" style="margin-bottom: 3px;"></a>, <a href="https://hadley.nz" class="external-link">Hadley Wickham</a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
