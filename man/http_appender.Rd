@@ -16,6 +16,10 @@ additional arguments corresponding to the message.}
 
 \item{...}{Further arguments passed on to \code{\link[httr:POST]{httr::POST()}}.}
 }
+\value{
+An appender: a function with the interface \verb{function(level, ...)}
+that submits its arguments to \code{url} and returns \code{invisible(NULL)}.
+}
 \description{
 Send logs in the body of HTTP requests. Responses with status code 400
 or above will trigger errors.

@@ -20,6 +20,9 @@
 #' @param layout A layout function taking a `level` parameter and additional
 #'   arguments corresponding to the message. See [layouts()].
 #'
+#' @return An appender: a function with the interface `function(level, ...)`
+#'   that writes its arguments to a destination and returns `invisible(NULL)`.
+#'
 #' @examples
 #' # The behaviour of an appender can be seen by using them directly; the
 #' # following snippet will write the message to the console.
@@ -63,6 +66,15 @@ file_appender <- function(file, append = TRUE, layout = default_log_layout()) {
 #'   additional arguments corresponding to the message.
 #' @param timeout Timeout for the connection.
 #'
+#' @return An appender: a function with the interface `function(level, ...)`
+#'   that writes its arguments to the socket and returns `invisible(NULL)`.
+#'
+#' @examples
+#' \dontrun{
+#' # Send messages to a listener on localhost.
+#' appender <- tcp_appender("localhost", port = 8080)
+#' appender("INFO", "Message.")
+#' }
 #' @seealso [appenders] for more information on Appenders, and
 #'   [base::socketConnection()] for the underlying connection object
 #'   used by [tcp_appender()].
@@ -106,6 +118,9 @@ tcp_appender <- function(
 #' @param layout A layout function taking a `level` parameter and
 #'   additional arguments corresponding to the message.
 #' @param ... Further arguments passed on to [httr::POST()].
+#'
+#' @return An appender: a function with the interface `function(level, ...)`
+#'   that submits its arguments to `url` and returns `invisible(NULL)`.
 #'
 #' @examples
 #' \dontrun{
@@ -164,6 +179,16 @@ http_appender <- function(
 #'   additional arguments corresponding to the message.
 #' @param ... Further arguments passed on to [rsyslog::open_syslog()].
 #'
+#' @return An appender: a function with the interface `function(level, ...)`
+#'   that writes its arguments to the local syslog and returns
+#'   `invisible(NULL)`.
+#'
+#' @examples
+#' \dontrun{
+#' # Send messages to the local syslog.
+#' appender <- syslog_appender("my-application")
+#' appender("INFO", "Message.")
+#' }
 #' @seealso [appenders] for more information on Appenders.
 #'
 #' @export

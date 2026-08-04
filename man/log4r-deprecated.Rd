@@ -63,6 +63,12 @@ error(logger, ...)
 
 fatal(logger, ...)
 }
+\value{
+\code{\link[=logformat]{logformat()}} and \code{\link[=logformat<-]{logformat<-()}} always throw an error. \code{\link[=logfile]{logfile()}}
+returns the path the logger writes to and \code{\link[=logfile<-]{logfile<-()}} returns the
+modified logger. The remaining functions return the same values as their
+replacements.
+}
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
 \itemize{
@@ -84,5 +90,14 @@ used.
 between priority integers and levels. It issues a deprecation warning when
 used.
 }
+}
+\examples{
+# Deprecated: configure a logger with create.logger().
+logger <- create.logger(logfile = tempfile(), level = "INFO")
+info(logger, "A message.")
+
+# Instead, use logger() with an appender:
+logger <- logger("INFO", appenders = file_appender(tempfile()))
+log_info(logger, "A message.")
 }
 \keyword{internal}

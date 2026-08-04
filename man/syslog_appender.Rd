@@ -14,8 +14,20 @@ additional arguments corresponding to the message.}
 
 \item{...}{Further arguments passed on to \code{\link[rsyslog:open_syslog]{rsyslog::open_syslog()}}.}
 }
+\value{
+An appender: a function with the interface \verb{function(level, ...)}
+that writes its arguments to the local syslog and returns
+\code{invisible(NULL)}.
+}
 \description{
 Send messages to the local syslog. Requires the \code{rsyslog} package.
+}
+\examples{
+\dontrun{
+# Send messages to the local syslog.
+appender <- syslog_appender("my-application")
+appender("INFO", "Message.")
+}
 }
 \seealso{
 \link{appenders} for more information on Appenders.

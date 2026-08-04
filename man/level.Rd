@@ -23,6 +23,11 @@ available.loglevels()
 
 \item{value}{One of \code{"DEBUG"}, \code{"INFO"}, \code{"WARN"}, \code{"ERROR"}, or \code{"FATAL"}.}
 }
+\value{
+\code{level()} returns the logger's threshold and \verb{level<-()} returns the
+modified logger. \code{available.loglevels()} returns a named list of all
+thresholds.
+}
 \description{
 It can sometimes be useful to change the logging threshold level at runtime.
 The \code{\link[=level]{level()}} accessor allows doing so.

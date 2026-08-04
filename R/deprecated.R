@@ -28,6 +28,20 @@ NULL
 #' * [verbosity()] is similar, in that there is no longer a stable mapping
 #'   between priority integers and levels. It issues a deprecation warning when
 #'   used.
+#'
+#' @return [logformat()] and [logformat<-()] always throw an error. [logfile()]
+#'   returns the path the logger writes to and [logfile<-()] returns the
+#'   modified logger. The remaining functions return the same values as their
+#'   replacements.
+#'
+#' @examples
+#' # Deprecated: configure a logger with create.logger().
+#' logger <- create.logger(logfile = tempfile(), level = "INFO")
+#' info(logger, "A message.")
+#'
+#' # Instead, use logger() with an appender:
+#' logger <- logger("INFO", appenders = file_appender(tempfile()))
+#' log_info(logger, "A message.")
 #' @export
 #' @keywords internal
 #' @rdname log4r-deprecated

@@ -30,6 +30,10 @@ threshold will be discarded.}
 
 \item{...}{One or more items to log.}
 }
+\value{
+\code{invisible(NULL)}, called for the side effect of writing to the
+logger's appenders.
+}
 \description{
 Write logs at a given level
 }

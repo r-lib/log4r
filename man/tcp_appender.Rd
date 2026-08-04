@@ -21,8 +21,19 @@ additional arguments corresponding to the message.}
 
 \item{timeout}{Timeout for the connection.}
 }
+\value{
+An appender: a function with the interface \verb{function(level, ...)}
+that writes its arguments to the socket and returns \code{invisible(NULL)}.
+}
 \description{
 Append messages to arbitrary TCP destinations.
+}
+\examples{
+\dontrun{
+# Send messages to a listener on localhost.
+appender <- tcp_appender("localhost", port = 8080)
+appender("INFO", "Message.")
+}
 }
 \seealso{
 \link{appenders} for more information on Appenders, and

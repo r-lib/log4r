@@ -23,6 +23,10 @@ json_log_layout()
 \item{time_format}{A valid format string for timestamps. See
 \code{\link[base:strptime]{base::strptime()}}.}
 }
+\value{
+A layout: a function with the interface \verb{function(level, ...)} that
+returns a single newline-terminated string.
+}
 \description{
 In \href{https://logging.apache.org/log4j/}{log4j} etymology, \strong{Layouts} are how
 \strong{\link[=appenders]{Appenders}} control the format of messages. Most users will

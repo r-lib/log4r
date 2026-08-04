@@ -5,6 +5,8 @@
 #'   `"ERROR"`, or `"FATAL"`. Messages with a lower severity than the logger
 #'   threshold will be discarded.
 #' @param ... One or more items to log.
+#' @return `invisible(NULL)`, called for the side effect of writing to the
+#'   logger's appenders.
 #' @examples
 #' logger <- logger()
 #'

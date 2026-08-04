@@ -6,6 +6,10 @@
 #' @param x An object of class `"logger"`.
 #' @param value One of `"DEBUG"`, `"INFO"`, `"WARN"`, `"ERROR"`, or `"FATAL"`.
 #'
+#' @return `level()` returns the logger's threshold and `level<-()` returns the
+#'   modified logger. `available.loglevels()` returns a named list of all
+#'   thresholds.
+#'
 #' @examples
 #' lgr <- logger()
 #' level(lgr) # Prints "INFO".

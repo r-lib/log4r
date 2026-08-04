@@ -26,6 +26,9 @@
 #' @param time_format A valid format string for timestamps. See
 #'   [base::strptime()].
 #'
+#' @return A layout: a function with the interface `function(level, ...)` that
+#'   returns a single newline-terminated string.
+#'
 #' @examples
 #' # The behaviour of a layout can be seen by using them directly:
 #' simple <- simple_log_layout()

@@ -19,6 +19,10 @@ arguments corresponding to the message. See \code{\link[=layouts]{layouts()}}.}
 \item{append}{When \code{TRUE}, the file is not truncated when opening for
 the first time.}
 }
+\value{
+An appender: a function with the interface \verb{function(level, ...)}
+that writes its arguments to a destination and returns \code{invisible(NULL)}.
+}
 \description{
 In \href{https://logging.apache.org/log4j/}{log4j} etymology, \strong{Appenders} are
 destinations where logs are written. Appenders have no control over
