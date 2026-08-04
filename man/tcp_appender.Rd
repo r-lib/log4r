@@ -26,6 +26,6 @@ Append messages to arbitrary TCP destinations.
 }
 \seealso{
 \link{appenders} for more information on Appenders, and
-\code{\link[base:connections]{base::socketConnection()}} for the underlying connection object
+\code{\link[base:socketConnection]{base::socketConnection()}} for the underlying connection object
 used by \code{\link[=tcp_appender]{tcp_appender()}}.
 }

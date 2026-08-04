@@ -22,8 +22,7 @@ general-purpose logging packages available on CRAN:
   [**logging**](https://cran.r-project.org/package=logging), which are
   well-established packages; and
 - [**logger**](https://cran.r-project.org/package=logger),
-  [**lgr**](https://cran.r-project.org/package=lgr),
-  [**loggit**](https://cran.r-project.org/package=loggit), and
+  [**lgr**](https://cran.r-project.org/package=lgr), and
   [**rlog**](https://cran.r-project.org/package=rlog), all of which are
   relative newcomers.
 
@@ -150,27 +149,6 @@ lgr_debug <- function() {
 }
 ```
 
-## The **loggit** Package
-
-The following is what I believe to be a typical **loggit** setup. Since we only
-want to log to the console, set the output file to `/dev/null`. In addition,
-**loggit** does not have a notion of thresholds, so there is no "do nothing"
-operation to test.
-
-```{r loggit-setup, results = "hide"}
-requireNamespace("loggit")
-
-if (.Platform$OS.type == "unix") {
-  loggit::set_logfile("/dev/null")
-} else {
-  loggit::set_logfile("nul")
-}
-
-loggit_info <- function() {
-  loggit::loggit("INFO", "Info message.")
-}
-```
-
 ## The **rlog** Package
 
 The **rlog** package currently has no configuration options other than the
@@ -213,7 +191,6 @@ logging_info()
 fl_info()
 logger_info()
 lgr_info()
-loggit_info()
 rlog_info()
 ```
 
@@ -229,7 +206,6 @@ info_bench <- microbenchmark::microbenchmark(
   logging = logging_info(),
   logger = logger_info(),
   lgr = lgr_info(),
-  loggit = loggit_info(),
   rlog = rlog_info(),
   times = 500,
   control = list(warmups = 50)

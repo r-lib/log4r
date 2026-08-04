@@ -133,7 +133,9 @@ http_appender <- function(url, method = "POST", layout = default_log_layout(),
 
     # Treat HTTP errors as actual errors.
     if (httr::status_code(resp) >= 400) {
-      cli::cli_abort("Server responded with error {.code {resp}}.")
+      cli::cli_abort(
+        "Server responded with status {.code {httr::status_code(resp)}}."
+      )
     }
   }
 }

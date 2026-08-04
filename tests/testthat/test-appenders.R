@@ -13,21 +13,32 @@ test_that("The file appender works correctly", {
 
 test_that("The HTTP appender works correctly", {
   skip_if_not_installed("httr")
-  # Don't send actual HTTP requests on CRAN.
-  skip_on_cran()
+  httpbin <- webfakes::local_app_process(webfakes::httpbin_app())
 
   appender <- http_appender(
-    "http://httpbin.org/post", layout = simple_log_layout()
+    httpbin$url("/post"), layout = simple_log_layout()
   )
   expect_silent(appender("INFO", "Message"))
 
   appender <- expect_silent(http_appender(
-    "http://httpbin.org/post",
+    httpbin$url("/post"),
     method = "POST",
     layout = bare_log_layout(),
     httr::content_type_json()
   ))
   expect_silent(appender("INFO", '{"message":"Message"}'))
+})
+
+test_that("The HTTP appender errors on HTTP error statuses", {
+  skip_if_not_installed("httr")
+  skip_if_not_installed("webfakes")
+
+  httpbin <- webfakes::local_app_process(webfakes::httpbin_app())
+
+  appender <- http_appender(
+    httpbin$url("/status/503"), layout = simple_log_layout()
+  )
+  expect_snapshot(appender("INFO", "Message"), error = TRUE)
 })
 
 test_that("The HTTP appender accepts only valid verbs", {

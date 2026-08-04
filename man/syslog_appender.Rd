@@ -12,7 +12,7 @@ syslog_appender(identifier, layout = bare_log_layout(), ...)
 \item{layout}{A layout function taking a \code{level} parameter and
 additional arguments corresponding to the message.}
 
-\item{...}{Further arguments passed on to \code{\link[rsyslog:syslog]{rsyslog::open_syslog()}}.}
+\item{...}{Further arguments passed on to \code{\link[rsyslog:open_syslog]{rsyslog::open_syslog()}}.}
 }
 \description{
 Send messages to the local syslog. Requires the \code{rsyslog} package.
