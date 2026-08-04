@@ -1,3 +1,5 @@
+# log4r (development version)
+
 # log4r 0.5.0
 
 # log4r 0.4.4.9000
