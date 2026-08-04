@@ -1,7 +1,5 @@
-## Release Summary
+## R CMD check results
 
-This is a bugfix release fixing flaky unit tests on CRAN.
+0 errors | 0 warnings | 1 note
 
-## R CMD check Results
-
-0 errors | 0 warnings | 0 notes
+Unfortunately Aaron was out on parental leave (without access to email) so didn't get the notes about the problems. I've fixed them and taken on maintenance until he gets back.
