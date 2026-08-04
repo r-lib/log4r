@@ -2,6 +2,8 @@
 
 ## log4r 0.5.0
 
+## log4r 0.4.4.9000
+
 - [`logfmt_log_layout()`](https://log4r.r-lib.org/reference/layouts.md)
   and
   [`json_log_layout()`](https://log4r.r-lib.org/reference/layouts.md)

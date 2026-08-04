@@ -65,7 +65,7 @@
             
             <h4 data-toc-skip class="date">Updated as of 2026-08-04</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/r-lib/log4r/blob/bump-0.5.0/vignettes/structured-logging.Rmd" class="external-link"><code>vignettes/structured-logging.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/r-lib/log4r/blob/main/vignettes/structured-logging.Rmd" class="external-link"><code>vignettes/structured-logging.Rmd</code></a></small>
       <div class="d-none name"><code>structured-logging.Rmd</code></div>
     </div>
 
@@ -122,7 +122,7 @@ message with fields like the following:</p>
 <span>  remote_addr <span class="op">=</span> <span class="va">req</span><span class="op">$</span><span class="va">REMOTE_ADDR</span>,</span>
 <span>  status <span class="op">=</span> <span class="va">res</span><span class="op">$</span><span class="va">status</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; {"message":"authentication failed","method":"POST","path":"/upload","params":"","user_agent":"curl/7.58.0","remote_addr":"124.133.52.161","status":401,"level":"INFO","time":"2026-08-04T19:29:44.170384Z"}</span></span></code></pre></div>
+<span><span class="co">#&gt; {"message":"authentication failed","method":"POST","path":"/upload","params":"","user_agent":"curl/7.58.0","remote_addr":"124.133.52.161","status":401,"level":"INFO","time":"2026-08-04T22:51:49.844694Z"}</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="logfmt-logs">logfmt Logs<a class="anchor" aria-label="anchor" href="#logfmt-logs"></a>
@@ -139,7 +139,7 @@ processes many CSV files:</p>
 <span>  entries <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">entries</span><span class="op">)</span>,</span>
 <span>  elapsed <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/class.html" class="external-link">unclass</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/difftime.html" class="external-link">difftime</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/Sys.time.html" class="external-link">Sys.time</a></span><span class="op">(</span><span class="op">)</span>, <span class="va">start</span>, units <span class="op">=</span> <span class="st">"secs"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
-<span><span class="co">#&gt; level=INFO ts=2026-08-04T19:29:44.315126Z message="processed entries" file=catpics_01.csv entries=4124 elapsed=0.3402</span></span></code></pre></div>
+<span><span class="co">#&gt; level=INFO ts=2026-08-04T22:51:49.965867Z message="processed entries" file=catpics_01.csv entries=4124 elapsed=0.2976</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

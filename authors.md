@@ -20,7 +20,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/r-lib/log4r/blob/bump-0.5.0/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/r-lib/log4r/blob/main/DESCRIPTION)
 
 White J, Jacobs A (2026). *log4r: A Fast and Lightweight Logging System
 for R, Based on 'log4j'*. R package version 0.5.0,
