@@ -6,7 +6,11 @@ Authors@R: c(
     person("John Myles", "White", role = c("aut", "cph")),
     person("Kenton", "White", role = "ctb"),
     person("Kirill", "Müller", , "krlmlr+r@mailbox.org", role = "ctb"),
-    person("Aaron", "Jacobs", , "atheriel@gmail.com", role = c("aut", "cre"))
+    person("Aaron", "Jacobs", , "atheriel@gmail.com", role = "aut"),
+    person("Posit Software, PBC", role = c("cph", "fnd"),
+           comment = c(ROR = "https://ror.org/03wc8by49")),
+    person("Hadley", "Wickham", , "hadley@posit.co", role = "cre",
+           comment = c(ORCID = "0000-0003-4757-117X"))
   )
 Description: The log4r package is meant to provide a fast, lightweight,
     object-oriented approach to logging in R based on the widely-emulated
