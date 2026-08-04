@@ -12,12 +12,15 @@ Authors@R: c(
     person("Hadley", "Wickham", , "hadley@posit.co", role = "cre",
            comment = c(ORCID = "0000-0003-4757-117X"))
   )
-Description: The log4r package is meant to provide a fast, lightweight,
-    object-oriented approach to logging in R based on the widely-emulated
-    'log4j' system and etymology.
+Description: Provides a fast, lightweight, object-oriented approach to
+    logging based on the widely-emulated 'log4j' system and etymology.
+    Loggers write messages to one or more destinations, called appenders,
+    such as the console, a file, or a remote server, and control their
+    format with a layout. Messages below a configurable severity threshold
+    are discarded cheaply, so logging calls can be left in production code.
 License: Artistic-2.0
-URL: https://github.com/johnmyleswhite/log4r, https://log4r.r-lib.org
-BugReports: https://github.com/johnmyleswhite/log4r/issues
+URL: https://github.com/r-lib/log4r, https://log4r.r-lib.org
+BugReports: https://github.com/r-lib/log4r/issues
 Imports:
     cli,
     lifecycle,

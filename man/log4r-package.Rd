@@ -11,9 +11,9 @@ The log4r package is meant to provide a fast, lightweight, object-oriented appro
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/johnmyleswhite/log4r}
+  \item \url{https://github.com/r-lib/log4r}
   \item \url{https://log4r.r-lib.org}
-  \item Report bugs at \url{https://github.com/johnmyleswhite/log4r/issues}
+  \item Report bugs at \url{https://github.com/r-lib/log4r/issues}
 }
 
 }

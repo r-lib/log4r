@@ -59,7 +59,7 @@ Windows), the next most-common approach is to send them over HTTP. Log
 aggregation services usually provide an HTTP API endpoint to facilitate this:
 
 ```{r http-1}
-logger <- logger(appenders = http_appender("http://logging.example.local"))
+logger <- logger(appenders = http_appender("https://logging.example.local"))
 ```
 
 Some services use `GET` or `PUT` requests instead of the more intuitive `POST`,
@@ -67,7 +67,7 @@ which you can opt into as follows:
 
 ```{r http-2}
 logger <- logger(
-  appenders = http_appender("http://logging.example.local", method = "GET")
+  appenders = http_appender("https://logging.example.local", method = "GET")
 )
 ```
 
@@ -78,7 +78,7 @@ parameters to the underlying **httr** verb function:
 ```{r http-3}
 logger <- logger(
   appenders = http_appender(
-    "http://logging.example.local",
+    "https://logging.example.local",
     method = "GET",
     layout = default_log_layout(),
     httr::add_headers(`X-Custom-Header` = 1),

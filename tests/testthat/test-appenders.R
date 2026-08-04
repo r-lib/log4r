@@ -13,6 +13,8 @@ test_that("The file appender works correctly", {
 
 test_that("The HTTP appender works correctly", {
   skip_if_not_installed("httr")
+  skip_if_not_installed("webfakes")
+
   httpbin <- webfakes::local_app_process(webfakes::httpbin_app())
 
   appender <- http_appender(
@@ -47,7 +49,7 @@ test_that("The HTTP appender accepts only valid verbs", {
   skip_if_not_installed("httr")
 
   expect_error(
-    http_appender("http://httpbin.org/post", method = "INVALID"),
+    http_appender("https://example.com/post", method = "INVALID"),
     regex = "not a supported HTTP method"
   )
 })
