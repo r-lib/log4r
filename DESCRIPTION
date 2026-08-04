@@ -1,7 +1,7 @@
 Type: Package
 Package: log4r
 Title: A Fast and Lightweight Logging System for R, Based on 'log4j'
-Version: 0.4.4.9000
+Version: 0.5.0
 Authors@R: c(
     person("John Myles", "White", role = c("aut", "cph")),
     person("Kenton", "White", role = "ctb"),
