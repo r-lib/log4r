@@ -40,14 +40,14 @@ log_fatal(logger, ...)
 logger <- logger()
 
 log_at(logger, "WARN", "First warning from our code")
-#> WARN  [2026-08-04 18:43:47] First warning from our code
+#> WARN  [2026-08-04 18:45:26] First warning from our code
 log_debug(logger, "Debugging our code")
 log_info(logger, "Information about our code")
-#> INFO  [2026-08-04 18:43:47] Information about our code
+#> INFO  [2026-08-04 18:45:26] Information about our code
 log_warn(logger, "Another warning from our code")
-#> WARN  [2026-08-04 18:43:47] Another warning from our code
+#> WARN  [2026-08-04 18:45:26] Another warning from our code
 log_error(logger, "An error from our code")
-#> ERROR [2026-08-04 18:43:47] An error from our code
+#> ERROR [2026-08-04 18:45:26] An error from our code
 log_fatal(logger, "I'm outta here")
-#> FATAL [2026-08-04 18:43:47] I'm outta here
+#> FATAL [2026-08-04 18:45:26] I'm outta here
 ```

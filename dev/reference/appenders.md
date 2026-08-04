@@ -54,5 +54,5 @@ arguments to a destination and return `invisible(NULL)`.
 # following snippet will write the message to the console.
 appender <- console_appender()
 appender("INFO", "Input has length ", 0, ".")
-#> INFO  [2026-08-04 18:43:46] Input has length 0.
+#> INFO  [2026-08-04 18:45:25] Input has length 0.
 ```
