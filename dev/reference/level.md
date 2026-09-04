@@ -42,7 +42,7 @@ lgr <- logger()
 level(lgr) # Prints "INFO".
 #> INFO 
 info(lgr, "This message is shown.")
-#> INFO  [2026-08-04 22:53:15] This message is shown.
+#> INFO  [2026-09-04 19:48:47] This message is shown.
 level(lgr) <- "FATAL"
 info(lgr, "This message is now suppressed.")
 ```

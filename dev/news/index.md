@@ -4,7 +4,7 @@
 
 ## log4r 0.5.0
 
-## log4r 0.4.4.9000
+CRAN release: 2026-08-04
 
 - [`logfmt_log_layout()`](https://log4r.r-lib.org/dev/reference/layouts.md)
   and

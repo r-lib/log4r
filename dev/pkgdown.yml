@@ -5,7 +5,7 @@ articles:
   logging-beyond-local-files: logging-beyond-local-files.html
   performance: performance.html
   structured-logging: structured-logging.html
-last_built: 2026-08-04T22:53Z
+last_built: 2026-09-04T19:48Z
 urls:
   reference: https://log4r.r-lib.org/reference
   article: https://log4r.r-lib.org/articles
