@@ -108,3 +108,23 @@ log_info(
   elapsed = unclass(difftime(Sys.time(), start, units = "secs"))
 )
 ```
+
+You could read a logfmt file, even when the keys differ between entries, with:
+
+```{r logfmt-example-import}
+log.as.df <- lapply(readLines("file_in_logfmt.log"), function(x){
+  scan(textConnection(x), what = "raw", sep = " ", quote = "\"", quiet = TRUE)
+}) |>
+  lapply(X=_, function(y){
+    key <- sub("(^[^=]*)=.*", "\\1", y)
+    value <- sub("^[^=]*=(.*)", "\\1", y)
+    names(value) <- key
+    return(value)
+    }) |>
+  lapply(X = _, as.data.frame.list) |>
+  dplyr::bind_rows(x = _) |>
+  # plyr::colwise(.fun = type.convert, x= _) |>
+  type.convert(x= _, as.is = TRUE, numerals = "no.loss", tryLogical = FALSE)
+```
+
+
